@@ -62,3 +62,36 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
   	connection.rollback()
 }
 ```
+
+¿Cuales son los dos cambios que pueden ser echos, independienemente eluno del otro con el fin de que el siguiente codigo compile?
+```
+import java.io.IOException;
+
+class Finest {
+	public Finest(int value){
+ 		if(Math.random()> 0.5) {
+ 			throw new IOException();
+ 		}
+ 		throw new RuntimeException();
+	}
+}
+
+class Main{
+	public static void main (String[] args){
+    	try{
+        	Finest fine = new Finest(77);
+        } catch (RuntimeException e){
+        	e.printStackTrace();
+        }
+    }
+}
+```
+¿Cuál es el resultado?
+
+```
+Stream<String> strings = Stream.of("a1", "b2", "c3", "a1");
+var result = strings.collect(Collectors.groupingBy(s -> s.indexOf("a"), 
+	Collectors.joining(":")));
+
+System.out.println(result)
+```
