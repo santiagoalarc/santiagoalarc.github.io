@@ -11,7 +11,7 @@ The easiest way to make your first post is to edit this one. Go into /_posts/ an
 
 
 ¿Que resultado lanza el siguiente feragmento?
-```
+~~~~~~~~
 String string = "cdd;26;89;b89";
 String[] strings = string.split("\\w");
 for (String s : strings)
@@ -20,10 +20,11 @@ System.out.print(" ");
 strings = string.split("\\D");
 for (String s : strings)
   System.out.print(s + " ");
-```
+~~~~~~~~
+{: .language-ruby}
 
 Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
-```
+~~~~~~~~
 class A {
 	public int a = 0;
 	public A() {
@@ -38,18 +39,21 @@ class B extends A implements Serializable {
 		  b = 3;
     }
 }
-```
+~~~~~~~~
+{: .language-ruby}
+
 ¿Cuál de las siguientes opciones es correcta?
-```
+~~~~~~~~
 Set<Integer> c1 = new LinkedHashSet<>();
 LinkedHashSet<Integer> c2 = new HashSet<>();
 SortedSet<Integer> c3  = new TreeSet<>();
 SortedSet<Integer> c4 = new NavigableSet<>();
 LinkedList<Integer> c5 = new ArrayDeque<>();
-```
+~~~~~~~~
+{: .language-ruby}
 
 ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
-```
+~~~~~~~~
 try (Connection connection = DriverManager.getConnection(databaseUrl);
      Statement statement = connection.createStatement()){
 
@@ -61,10 +65,11 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 	statement.executeUpdate("INSERT INTO tools VALUE ('drill')");
   	connection.rollback()
 }
-```
+~~~~~~~~
+{: .language-ruby}
 
 ¿Cuales son los dos cambios que pueden ser echos, independienemente eluno del otro con el fin de que el siguiente codigo compile?
-```
+~~~~~~~~
 import java.io.IOException;
 
 class Finest {
@@ -85,16 +90,18 @@ class Main{
         }
     }
 }
-```
+~~~~~~~~
+{: .language-ruby}
 ¿Cuál es el resultado?
 
-```
+~~~~~~~~
 Stream<String> strings = Stream.of("a1", "b2", "c3", "a1");
 var result = strings.collect(Collectors.groupingBy(s -> s.indexOf("a"), 
 	Collectors.joining(":")));
 
 System.out.println(result)
-```
+~~~~~~~~
+{: .language-ruby}
 
 ¿Cuál es la salida de la implementación del siguiente código?
 ~~~~~~~~
@@ -124,6 +131,8 @@ class Y{
     }
 }
 ~~~~~~~~
+{: .language-ruby}
+
 ¿Cuál será el resultado del programa compilado y ejcutado?
 
 ~~~~~~~~
@@ -158,6 +167,7 @@ public class StaticQuest12{
         System.out.println(result);
     }
 ~~~~~~~~
+{: .language-ruby}
 {: .language-ruby}
 
 ¿Cuál sería el resultado?
