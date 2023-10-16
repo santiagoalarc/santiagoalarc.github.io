@@ -39,4 +39,26 @@ class B extends A implements Serializable {
     }
 }
 ```
+¿Cuál de las siguientes opciones es correcta?
+```
+Set<Integer> c1 = new LinkedHashSet<>();
+LinkedHashSet<Integer> c2 = new HashSet<>();
+SortedSet<Integer> c3  = new TreeSet<>();
+SortedSet<Integer> c4 = new NavigableSet<>();
+LinkedList<Integer> c5 = new ArrayDeque<>();
+```
 
+¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
+```
+try (Connection connection = DriverManager.getConnection(databaseUrl);
+     Statement statement = connection.createStatement()){
+
+	connection.setAutocommit(false);
+  	statement.executeUpdate("INSERT INTO tools VALUE ('hammer')");
+  	statement.executeUpdate("INSERT INTO tools VALUE ('screw')");
+  	connection.rollback()
+    	connection.setAutocommit(true);
+	statement.executeUpdate("INSERT INTO tools VALUE ('drill')");
+  	connection.rollback()
+}
+```
