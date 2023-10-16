@@ -147,5 +147,17 @@ public class StaticQuest12{
         StaticQuest12.m(); //linea 4
     }
 }
+
+¿Cuál sería el resultado?
+
+        Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
+
+        var result = stringStream.map(String::length)
+                .filter(s -> s <= 5)
+                .collect(Collectors.toSet());
+        System.out.println(result);
+    }
 ~~~~~~~~
 {: .language-ruby}
+
+
