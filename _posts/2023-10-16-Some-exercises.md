@@ -95,3 +95,56 @@ var result = strings.collect(Collectors.groupingBy(s -> s.indexOf("a"),
 
 System.out.println(result)
 ```
+
+¿Cuál es la salida de la implementación del siguiente código?
+~~~~~~~~
+class Order {
+	long orderId;
+  	double amount;
+  	public Order(long orderId, double amount){
+    	this.orderId = orderId;
+      	this.amount = amount;
+    }
+  	public String toString(){
+    	return orderId + ", " + amount;
+    }
+}
+
+class Y{
+	public static void main(String[] args){
+    	List<Order> orders = Arrays.asList(
+          new Order(1, 50),
+          new Order(5, 70),
+          new Order(7, 70)
+        );
+      
+      Order order = orders.stream()
+        .reduce(new Order(4, 0), (p1, p2) -> new Order(p1.orderId, p1.amount += p2.amount));
+      System.out.println(order);
+    }
+}
+~~~~~~~~
+¿Cuál será el resultado del programa compilado y ejcutado?
+
+~~~~~~~~
+public class StaticQuest12{
+    {
+        System.out.print("A"); //linea1
+    }
+    static {
+        System.out.print("S"); //linea2
+    }
+    {
+        System.out.print("B"); //linea3
+    }
+    public StaticQuest12(){
+        System.out.print("C");
+    }
+    static void m(){
+        System.out.print("M");
+    }
+    public static void main (String[] args){
+        StaticQuest12.m(); //linea 4
+    }
+}
+~~~~~~~~
