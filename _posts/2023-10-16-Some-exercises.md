@@ -148,3 +148,4 @@ public class StaticQuest12{
     }
 }
 ~~~~~~~~
+{: .language-ruby}
