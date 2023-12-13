@@ -2,7 +2,7 @@
 layout: post
 title: You're up and running!
 ---
-## ¿Que resultado lanza el siguiente feragmento?
+## 1. ¿Que resultado lanza el siguiente feragmento?
 ~~~~~~~~
 String string = "cdd;26;89;b89";
 String[] strings = string.split("\\w");
@@ -19,7 +19,7 @@ for (String s : strings)
  - [ ] 26 89 89 cdd;56;89;b89
  - [ ] cdd;26;89;b89 26 89 89
 
-## Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
+## 2. Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
 ~~~~~~~~
 class A {
 	public int a = 0;
@@ -44,7 +44,7 @@ class B extends A implements Serializable {
 - [ ] b.a=0, b.b=3
 - [ ] b.a=1, b.b=0
 
-## ¿Cuál de las siguientes opciones es correcta?
+## 3. ¿Cuál de las siguientes opciones es correcta?
 ~~~~~~~~
 Set<Integer> c1 = new LinkedHashSet<>();
 LinkedHashSet<Integer> c2 = new HashSet<>();
@@ -54,7 +54,7 @@ LinkedList<Integer> c5 = new ArrayDeque<>();
 ~~~~~~~~
 {: .language-ruby}
 
-## ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
+## 4. ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
 ~~~~~~~~
 try (Connection connection = DriverManager.getConnection(databaseUrl);
      Statement statement = connection.createStatement()){
@@ -74,7 +74,7 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 - [ ] 2
 - [ ] 3
 
-## ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
+## 5. ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
 ~~~~~~~~
 import java.io.IOException;
 
@@ -105,7 +105,7 @@ class Main{
 - [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
 
 
-## ¿Cuál es el resultado?
+## 6. ¿Cuál es el resultado?
 
 ~~~~~~~~
 Stream<String> strings = Stream.of("a1", "b2", "c3", "a1");
@@ -116,7 +116,7 @@ System.out.println(result)
 ~~~~~~~~
 {: .language-ruby}
 
-## ¿Cuál es la salida de la implementación del siguiente código?
+## 7. ¿Cuál es la salida de la implementación del siguiente código?
 ~~~~~~~~
 class Order {
 	long orderId;
@@ -153,7 +153,7 @@ class Y{
 - [ ] 17, 190.0
 
 
-## ¿Cuál será el resultado del programa compilado y ejcutado?
+## 8. ¿Cuál será el resultado del programa compilado y ejcutado?
 ~~~~~~~~
 public class StaticQuest12{
     {
@@ -186,7 +186,7 @@ public class StaticQuest12{
 - [ ] SABM
 - [ ] La compilación falla en la línea 2
 
-## ¿Cuál sería el resultado?
+## 9. ¿Cuál sería el resultado?
 ~~~~~~
 
         Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
@@ -205,7 +205,7 @@ public class StaticQuest12{
 - [ ] []
 - [ ] Se lanza una excepción en tiempo de ejecución.
 
-## ¿Cuál sería el resultado?
+## 10. ¿Cuál sería el resultado?
 ~~~
         Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
 
@@ -217,7 +217,7 @@ public class StaticQuest12{
 ~~~
 {: .language-ruby}
 
-## ¿Qué código leerá correctamente una linea de un archivo?
+## 11. ¿Qué código leerá correctamente una linea de un archivo?
 ~~~
 	BufferedReader br = new BufferedReader(new FileReader("data\\file.txt"));
 ~~~
