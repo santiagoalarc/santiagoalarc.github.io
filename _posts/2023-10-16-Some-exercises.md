@@ -10,7 +10,7 @@ Next you can update your site name, avatar and other options using the _config.y
 The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
 
 
-##¿Que resultado lanza el siguiente feragmento?
+## ¿Que resultado lanza el siguiente feragmento?
 ~~~~~~~~
 String string = "cdd;26;89;b89";
 String[] strings = string.split("\\w");
@@ -22,6 +22,10 @@ for (String s : strings)
   System.out.print(s + " ");
 ~~~~~~~~
 {: .language-ruby}
+ - [ ] cdd;26;89;b8 cdd;26;89;b8
+ - [x] ;  ;  ;      26 89  89
+ - [ ] 26 89 89 cdd;56;89;b89
+ - [ ] cdd;26;89;b89 26 89 89
 
 ## Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
 ~~~~~~~~
@@ -99,7 +103,7 @@ class Main{
 - [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
 
 
-##¿Cuál es el resultado?
+## ¿Cuál es el resultado?
 
 ~~~~~~~~
 Stream<String> strings = Stream.of("a1", "b2", "c3", "a1");
@@ -110,7 +114,7 @@ System.out.println(result)
 ~~~~~~~~
 {: .language-ruby}
 
-##¿Cuál es la salida de la implementación del siguiente código?
+## ¿Cuál es la salida de la implementación del siguiente código?
 ~~~~~~~~
 class Order {
 	long orderId;
@@ -139,9 +143,15 @@ class Y{
 }
 ~~~~~~~~
 {: .language-ruby}
+- [ ] 4, 190.0
+- [ ] Se lanza una excepción en tiempo de ejecución.
+- [ ] 17, 0.0
+- [ ] 4, 0.0
+- [ ] Error de compilación
+- [ ] 17, 190.0
+
 
 ## ¿Cuál será el resultado del programa compilado y ejcutado?
-
 ~~~~~~~~
 public class StaticQuest12{
     {
