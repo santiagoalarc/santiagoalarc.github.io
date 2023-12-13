@@ -68,11 +68,11 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 ~~~~~~~~
 {: .language-ruby}
 
-¿Cuales son los dos cambios que pueden ser echos, independienemente eluno del otro con el fin de que el siguiente codigo compile?
+¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
 ~~~~~~~~
 import java.io.IOException;
 
-class Finest {
+class Class1 {
 	public Finest(int value){
  		if(Math.random()> 0.5) {
  			throw new IOException();
@@ -92,6 +92,13 @@ class Main{
 }
 ~~~~~~~~
 {: .language-ruby}
+- [ ] Cambie RuntimeExpetion en la línea 1 a java.io.IOException.
+- [ ] Agregue throws IOException al método principal así como al constructor de clase Class1.
+- [ ] Agregar lanza IOException al constructor de clase Class1.
+- [ ] Agregar lanza IOException al método principal.
+- [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
+
+
 ¿Cuál es el resultado?
 
 ~~~~~~~~
