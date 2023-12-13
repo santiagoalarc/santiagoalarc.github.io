@@ -69,6 +69,10 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 }
 ~~~~~~~~
 {: .language-ruby}
+- [ ] 0
+- [ ] 1
+- [ ] 2
+- [ ] 3
 
 ## ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
 ~~~~~~~~
@@ -173,6 +177,14 @@ public class StaticQuest12{
 }
 ~~~~~~~~
 {: .language-ruby}
+- [ ] La compilación falla en la línea 4
+- [ ] La compilación falla en la línea 3
+- [ ] ASBM
+- [ ] M
+- [ ] SCM
+- [ ] CM
+- [ ] SABM
+- [ ] La compilación falla en la línea 2
 
 ## ¿Cuál sería el resultado?
 ~~~~~~
@@ -204,5 +216,33 @@ public class StaticQuest12{
     }
 ~~~
 {: .language-ruby}
+
+## ¿Qué código leerá correctamente una linea de un archivo?
+~~~
+	BufferedReader br = new BufferedReader(new FileReader("data\\file.txt"));
+~~~
+{: .language-ruby}
+
+- [ ] Opción a:
+~~~
+	while (String str = br.readLine() ! null)
+	System.out.println(str); 
+~~~
+{: .language-ruby}
+
+- [ ] Opción b:
+~~~
+	while ((String str = br.readLine()) ! null)
+	System.out.println(str); String str;
+	while (str = br.readLine() != null)
+	System.out.println(str)
+~~~
+
+- [ ] Opción c:
+~~~
+	String str
+	while (str = br.readLine() ! null)
+	System.out.println(str)
+~~~
 
 
