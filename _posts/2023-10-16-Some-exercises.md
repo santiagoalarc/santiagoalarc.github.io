@@ -2,14 +2,6 @@
 layout: post
 title: You're up and running!
 ---
-
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
-
-![_config.yml]({{ site.baseurl }}/images/config.png)
-
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
-
-
 ## ¿Que resultado lanza el siguiente feragmento?
 ~~~~~~~~
 String string = "cdd;26;89;b89";
@@ -40,11 +32,17 @@ class B extends A implements Serializable {
 	public int b = 0;
 	public B() {
     	a = 2;
-		  b = 3;
+	b = 3;
     }
 }
 ~~~~~~~~
 {: .language-ruby}
+- [ ] b.a=0, b.b=0
+- [ ] b.a=2, b.b=3
+- [ ] b.a=1, b.b=3
+- [ ] La deserialización no será posible porque la clase A no implementa la interfaz de Serializable
+- [ ] b.a=0, b.b=3
+- [ ] b.a=1, b.b=0
 
 ## ¿Cuál de las siguientes opciones es correcta?
 ~~~~~~~~
