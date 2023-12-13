@@ -2,7 +2,7 @@
 layout: post
 title: You're up and running!
 ---
-## 1. ¿Que resultado lanza el siguiente feragmento?
+## 1. ¿Que resultado lanza el siguiente fragmento?
 ~~~~~~~~
 String string = "cdd;26;89;b89";
 String[] strings = string.split("\\w");
@@ -100,8 +100,8 @@ class Main{
 {: .language-ruby}
 - [ ] Cambie RuntimeExpetion en la línea 1 a java.io.IOException.
 - [ ] Agregue throws IOException al método principal así como al constructor de clase Class1.
-- [ ] Agregar lanza IOException al constructor de clase Class1.
-- [ ] Agregar lanza IOException al método principal.
+- [ ] Agregue throws IOException al constructor de clase Class1.
+- [ ] Agregue throws IOException al método principal.
 - [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
 
 
