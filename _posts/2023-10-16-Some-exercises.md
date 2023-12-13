@@ -10,7 +10,7 @@ Next you can update your site name, avatar and other options using the _config.y
 The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
 
 
-¿Que resultado lanza el siguiente feragmento?
+##¿Que resultado lanza el siguiente feragmento?
 ~~~~~~~~
 String string = "cdd;26;89;b89";
 String[] strings = string.split("\\w");
@@ -23,7 +23,7 @@ for (String s : strings)
 ~~~~~~~~
 {: .language-ruby}
 
-Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
+## Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
 ~~~~~~~~
 class A {
 	public int a = 0;
@@ -42,7 +42,7 @@ class B extends A implements Serializable {
 ~~~~~~~~
 {: .language-ruby}
 
-¿Cuál de las siguientes opciones es correcta?
+## ¿Cuál de las siguientes opciones es correcta?
 ~~~~~~~~
 Set<Integer> c1 = new LinkedHashSet<>();
 LinkedHashSet<Integer> c2 = new HashSet<>();
@@ -52,7 +52,7 @@ LinkedList<Integer> c5 = new ArrayDeque<>();
 ~~~~~~~~
 {: .language-ruby}
 
-¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
+## ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
 ~~~~~~~~
 try (Connection connection = DriverManager.getConnection(databaseUrl);
      Statement statement = connection.createStatement()){
@@ -68,7 +68,7 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 ~~~~~~~~
 {: .language-ruby}
 
-¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
+## ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
 ~~~~~~~~
 import java.io.IOException;
 
@@ -99,7 +99,7 @@ class Main{
 - [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
 
 
-¿Cuál es el resultado?
+##¿Cuál es el resultado?
 
 ~~~~~~~~
 Stream<String> strings = Stream.of("a1", "b2", "c3", "a1");
@@ -110,7 +110,7 @@ System.out.println(result)
 ~~~~~~~~
 {: .language-ruby}
 
-¿Cuál es la salida de la implementación del siguiente código?
+##¿Cuál es la salida de la implementación del siguiente código?
 ~~~~~~~~
 class Order {
 	long orderId;
@@ -140,7 +140,7 @@ class Y{
 ~~~~~~~~
 {: .language-ruby}
 
-¿Cuál será el resultado del programa compilado y ejcutado?
+## ¿Cuál será el resultado del programa compilado y ejcutado?
 
 ~~~~~~~~
 public class StaticQuest12{
@@ -163,8 +163,11 @@ public class StaticQuest12{
         StaticQuest12.m(); //linea 4
     }
 }
+~~~~~~~~
+{: .language-ruby}
 
-¿Cuál sería el resultado?
+## ¿Cuál sería el resultado?
+~~~~~~
 
         Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
 
@@ -175,9 +178,14 @@ public class StaticQuest12{
     }
 ~~~~~~~~
 {: .language-ruby}
-{: .language-ruby}
+- [ ] {-1=b2:c3, 0=a1:a1}
+- [ ] [-1, 0]
+- [ ] [b2:c3, a1:a1]
+- [ ] Falla la compilación
+- [ ] []
+- [ ] Se lanza una excepción en tiempo de ejecución.
 
-¿Cuál sería el resultado?
+## ¿Cuál sería el resultado?
 ~~~
         Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
 
