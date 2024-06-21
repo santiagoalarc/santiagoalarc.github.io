@@ -79,7 +79,7 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 {: .language-ruby}
 - [ ] 0
 - [ ] 1
-- [ ] 2
+- [x] 2
 - [ ] 3
 
 ## 5. ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
