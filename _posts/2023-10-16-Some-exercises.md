@@ -53,6 +53,14 @@ SortedSet<Integer> c4 = new NavigableSet<>();
 LinkedList<Integer> c5 = new ArrayDeque<>();
 ~~~~~~~~
 {: .language-ruby}
+- [ ] Sentecia Linea 3 y Linea 5 compilará exitosamente
+- [x] Sentecia Linea 1 y Linea 3 compilará exitosamente
+- [ ] Solo la sentencia 2 compilará exitosamente
+- [ ] Sentecia Linea 1, Linea 3 y Linea 4 compilará exitosamente
+- [ ] Solo la sentencia 5 compilará exitosamente
+- [ ] Solo la sentencia 3 compilará exitosamente
+- [ ] Sentecia Linea 1, Linea 2 y Linea 3 compilará exitosamente
+- [ ] Sentecia Linea 3 y Linea 4 compilará exitosamente
 
 ## 4. ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
 ~~~~~~~~
