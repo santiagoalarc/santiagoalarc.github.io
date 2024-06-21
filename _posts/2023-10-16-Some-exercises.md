@@ -39,7 +39,7 @@ class B extends A implements Serializable {
 {: .language-ruby}
 - [ ] b.a=0, b.b=0
 - [ ] b.a=2, b.b=3
-- [ ] b.a=1, b.b=3
+- [x] b.a=1, b.b=3
 - [ ] La deserialización no será posible porque la clase A no implementa la interfaz de Serializable
 - [ ] b.a=0, b.b=3
 - [ ] b.a=1, b.b=0
