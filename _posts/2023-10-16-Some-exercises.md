@@ -78,7 +78,7 @@ try (Connection connection = DriverManager.getConnection(databaseUrl);
 ~~~~~~~~
 {: .language-ruby}
 - [ ] 0
-- [ ] 1
+- [x] 1
 - [x] 2
 - [ ] 3
 
