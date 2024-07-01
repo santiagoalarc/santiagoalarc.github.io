@@ -2,22 +2,25 @@
 layout: post
 title: You're up and running!
 ---
-## 1. ¿Que resultado lanza el siguiente fragmento?
+## 1. ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
 ~~~~~~~~
-String string = "cdd;26;89;b89";
-String[] strings = string.split("\\w");
-for (String s : strings)
-  System.out.print(s + " ");
-System.out.print(" ");
-strings = string.split("\\D");
-for (String s : strings)
-  System.out.print(s + " ");
+try (Connection connection = DriverManager.getConnection(databaseUrl);
+     Statement statement = connection.createStatement()){
+
+	connection.setAutocommit(false);
+  	statement.executeUpdate("INSERT INTO tools VALUE ('hammer')");
+  	statement.executeUpdate("INSERT INTO tools VALUE ('screw')");
+  	connection.rollback()
+    	connection.setAutocommit(true);
+	statement.executeUpdate("INSERT INTO tools VALUE ('drill')");
+  	connection.rollback()
+}
 ~~~~~~~~
 {: .language-ruby}
- - [ ] cdd;26;89;b8 cdd;26;89;b8
- - [x] ;  ;  ;      26 89  89
- - [ ] 26 89 89 cdd;56;89;b89
- - [ ] cdd;26;89;b89 26 89 89
+- [ ] 0
+- [x] 1
+- [x] 2
+- [ ] 3
 
 ## 2. Al ejecutar el siguiente código se crea el objeto B b = nuevo B). ¿Qué valores obtendrán los campos de este objeto durante la deserialización?
 ~~~~~~~~
@@ -44,45 +47,7 @@ class B extends A implements Serializable {
 - [ ] b.a=0, b.b=3
 - [ ] b.a=1, b.b=0
 
-## 3. ¿Cuál de las siguientes opciones es correcta?
-~~~~~~~~
-Set<Integer> c1 = new LinkedHashSet<>();
-LinkedHashSet<Integer> c2 = new HashSet<>();
-SortedSet<Integer> c3  = new TreeSet<>();
-SortedSet<Integer> c4 = new NavigableSet<>();
-LinkedList<Integer> c5 = new ArrayDeque<>();
-~~~~~~~~
-{: .language-ruby}
-- [ ] Sentecia Linea 3 y Linea 5 compilará exitosamente
-- [x] Sentecia Linea 1 y Linea 3 compilará exitosamente
-- [ ] Solo la sentencia 2 compilará exitosamente
-- [ ] Sentecia Linea 1, Linea 3 y Linea 4 compilará exitosamente
-- [ ] Solo la sentencia 5 compilará exitosamente
-- [ ] Solo la sentencia 3 compilará exitosamente
-- [ ] Sentecia Linea 1, Linea 2 y Linea 3 compilará exitosamente
-- [ ] Sentecia Linea 3 y Linea 4 compilará exitosamente
-
-## 4. ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
-~~~~~~~~
-try (Connection connection = DriverManager.getConnection(databaseUrl);
-     Statement statement = connection.createStatement()){
-
-	connection.setAutocommit(false);
-  	statement.executeUpdate("INSERT INTO tools VALUE ('hammer')");
-  	statement.executeUpdate("INSERT INTO tools VALUE ('screw')");
-  	connection.rollback()
-    	connection.setAutocommit(true);
-	statement.executeUpdate("INSERT INTO tools VALUE ('drill')");
-  	connection.rollback()
-}
-~~~~~~~~
-{: .language-ruby}
-- [ ] 0
-- [x] 1
-- [x] 2
-- [ ] 3
-
-## 5. ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
+## 3. ¿Cuales son los dos cambios que pueden ser hechos, independienemente el uno del otro con el fin de que el siguiente código compile?
 ~~~~~~~~
 import java.io.IOException;
 
@@ -112,19 +77,28 @@ class Main{
 - [ ] Agregue throws IOException al método principal.
 - [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
 
+## 4. ¿Cuál sería el resultado?
+~~~~~~
 
-## 6. ¿Cuál es el resultado?
+        Stream<String> stringStream = Stream.of("x1", "y2", "z3", "x1");
 
-~~~~~~~~
-Stream<String> strings = Stream.of("a1", "b2", "c3", "a1");
-var result = strings.collect(Collectors.groupingBy(s -> s.indexOf("a"), 
-	Collectors.joining(":")));
+        var result = stringStream.collect(
+                Collectors.groupingBy(s -> s.indexOf("x"),
+                        Collectors.joining(":")));
 
-System.out.println(result)
+        System.out.println(result);
+    
 ~~~~~~~~
 {: .language-ruby}
 
-## 7. ¿Cuál es la salida de la implementación del siguiente código?
+- [x] {-1=y2:z3, 0=x1:x1}
+- [ ] [-1, 0]
+- [ ] [y2:z3, x1:x1]
+- [ ] Falla la compilación
+- [ ] []
+- [ ] Se lanza una excepción en tiempo de ejecución.
+
+## 5. ¿Cuál es la salida de la implementación del siguiente código?
 ~~~~~~~~
 class Order {
 	long orderId;
@@ -160,8 +134,24 @@ class Y{
 - [ ] Error de compilación
 - [ ] 17, 190.0
 
+## 6. ¿Que resultado lanza el siguiente fragmento?
+~~~~~~~~
+String string = "cdd;26;89;b89";
+String[] strings = string.split("\\w");
+for (String s : strings)
+  System.out.print(s + " ");
+System.out.print(" ");
+strings = string.split("\\D");
+for (String s : strings)
+  System.out.print(s + " ");
+~~~~~~~~
+{: .language-ruby}
+ - [ ] cdd;26;89;b8 cdd;26;89;b8
+ - [x] ;  ;  ;      26 89  89
+ - [ ] 26 89 89 cdd;56;89;b89
+ - [ ] cdd;26;89;b89 26 89 89
 
-## 8. ¿Cuál será el resultado del programa compilado y ejcutado?
+## 7. ¿Cuál será el resultado del programa compilado y ejcutado?
 ~~~~~~~~
 public class StaticQuest12{
     {
@@ -194,38 +184,10 @@ public class StaticQuest12{
 - [ ] SABM
 - [ ] La compilación falla en la línea 2
 
-## 9. ¿Cuál sería el resultado?
-~~~~~~
 
-        Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
 
-        var result = stringStream.map(String::length)
-                .filter(s -> s <= 5)
-                .collect(Collectors.toSet());
-        System.out.println(result);
-    }
-~~~~~~~~
-{: .language-ruby}
-- [ ] {-1=b2:c3, 0=a1:a1}
-- [ ] [-1, 0]
-- [ ] [b2:c3, a1:a1]
-- [ ] Falla la compilación
-- [ ] []
-- [ ] Se lanza una excepción en tiempo de ejecución.
 
-## 10. ¿Cuál sería el resultado?
-~~~
-        Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
-
-        var result = stringStream.map(String::length)
-                .filter(s -> s <= 5)
-                .collect(Collectors.toSet());
-        System.out.println(result);
-    }
-~~~
-{: .language-ruby}
-
-## 11. ¿Qué código leerá correctamente una linea de un archivo?
+## 8. ¿Qué código leerá correctamente una linea de un archivo?
 ~~~
 	BufferedReader br = new BufferedReader(new FileReader("data\\file.txt"));
 ~~~
@@ -253,4 +215,68 @@ public class StaticQuest12{
 	System.out.println(str)
 ~~~
 
+## 9. ¿Cuál sería el resultado?
+~~~~~~
 
+        Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
+
+        var result = stringStream.map(String::length)
+                .filter(s -> s <= 5)
+                .collect(Collectors.toSet());
+        System.out.println(result);
+    }
+~~~~~~~~
+{: .language-ruby}
+- [ ] Se lanza una excepción en tiempo de ejecución.
+- [x] [5, 4]
+- [ ] Fallo de compilación
+- [ ] [4, 5]
+- [ ] [5, 4, 4]
+
+## 10. Dado el siguiente códgio para las clases CustomExeption y Custom, ¿Cúal es el resultado?
+~~~~~~
+
+class Custom{
+    public static void main(String[] args) {
+        try{
+            exec();
+        }catch (CustomException e){
+            System.err.print("C");
+        }
+    }
+    public static void exec(){//Linea1
+        try {
+            throw Math.random() > 0.5 ? new CustomException() : new RuntimeException();
+        }catch (RuntimeException re){
+            System.err.print("R");
+        }
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+- [ ] R
+- [ ] C
+- [ ] Tanto C como R
+- [ ] CR
+- [ ] Una compilación fallida ocurrirá en la línea 1
+
+
+
+
+## 3. ¿Cuál de las siguientes opciones es correcta?
+~~~~~~~~
+Set<Integer> c1 = new LinkedHashSet<>();
+LinkedHashSet<Integer> c2 = new HashSet<>();
+SortedSet<Integer> c3  = new TreeSet<>();
+SortedSet<Integer> c4 = new NavigableSet<>();
+LinkedList<Integer> c5 = new ArrayDeque<>();
+~~~~~~~~
+{: .language-ruby}
+- [ ] Sentecia Linea 3 y Linea 5 compilará exitosamente
+- [x] Sentecia Linea 1 y Linea 3 compilará exitosamente
+- [ ] Solo la sentencia 2 compilará exitosamente
+- [ ] Sentecia Linea 1, Linea 3 y Linea 4 compilará exitosamente
+- [ ] Solo la sentencia 5 compilará exitosamente
+- [ ] Solo la sentencia 3 compilará exitosamente
+- [ ] Sentecia Linea 1, Linea 2 y Linea 3 compilará exitosamente
+- [ ] Sentecia Linea 3 y Linea 4 compilará exitosamente
