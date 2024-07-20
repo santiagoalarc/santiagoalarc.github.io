@@ -280,3 +280,72 @@ LinkedList<Integer> c5 = new ArrayDeque<>();
 - [ ] Solo la sentencia 3 compilará exitosamente
 - [ ] Sentecia Linea 1, Linea 2 y Linea 3 compilará exitosamente
 - [ ] Sentecia Linea 3 y Linea 4 compilará exitosamente
+
+## A. ¿Cuál linea contine un constructor valido en la siguiente definición de clase?
+~~~~~~~~
+public class Six {
+
+    private int i;
+    public Six getInstance(){return new Six();} //linea1
+    public void Six(int x){i = x;} //linea2
+    public Six Six(){return new Six();} //linea3
+    public ~Six(){i=1;} //linea4
+
+}
+~~~~~~~~
+{: .language-ruby}
+- [ ] Linea 1
+- [ ] Linea 2
+- [ ] Linea 3
+- [ ] Linea 4
+- [x] Ninguna
+
+## B. ¿Cuál será el resultado de compilar y correl el programa?
+~~~~~~~~
+public class StaticQuest5 {
+    {
+        System.out.println(s);
+    }
+    static {
+        System.out.println(s);
+    }
+    static String s = "T";
+    public StaticQuest5(){
+        System.out.println(s);
+    }
+    public static void main(String[] args) {
+        new StaticQuest5();
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+- [x] Fallo en la compilación
+- [ ] TT
+- [ ] TTT
+- [ ] Una excepción es lanzada en el tiempo de ejecución.
+
+## C. ¿Cómo el código antes de la linea 1 necesita ser cambiada para ser cambiada para hacer el codigo compilar? Elige 2 opciones.
+~~~~~~~~
+public class Value {
+    public static void main(String s[]){
+	int i = getX();
+    }
+    private int getX(){ //linea 1
+	return 10;
+    }
+}
+Nota: En Java, los métodos estáticos solo pueden llamar a otros métodos estáticos directamente. El método getX() en su estado actual no es estático, lo que causará un error de compilación
+~~~~~~~~
+{: .language-ruby}
+- [ ] public int getX(){
+- [x] private static int getX(){
+- [x] public static int getX(){
+- [ ] public int static getX(){
+
+## D. ¿Cuál 2 de las siguientes oraciones son correctas sobre constructores?
+- [ ] Los constructores no deben tener argumentos si la construcción de superclase no tiene argumentos.
+- [x] Los constructores no se heredan.
+- [x] La primera declaración de cada constructor es una llamada legal al método super() o this().
+- [ ] Los constructores no se pueden sobrecargar.
+
+
