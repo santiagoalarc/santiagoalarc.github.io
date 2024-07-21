@@ -334,7 +334,7 @@ public class Value {
 	return 10;
     }
 }
-Nota: En Java, los métodos estáticos solo pueden llamar a otros métodos estáticos directamente. El método getX() en su estado actual no es estático, lo que causará un error de compilación
+//Nota: En Java, los métodos estáticos solo pueden llamar a otros métodos estáticos directamente. El método getX() en su estado actual no es estático, lo que causará un error de compilación
 ~~~~~~~~
 {: .language-ruby}
 - [ ] public int getX(){
@@ -347,5 +347,49 @@ Nota: En Java, los métodos estáticos solo pueden llamar a otros métodos está
 - [x] Los constructores no se heredan.
 - [x] La primera declaración de cada constructor es una llamada legal al método super() o this().
 - [ ] Los constructores no se pueden sobrecargar.
+
+## E. ¿Cual será la salida como un resultado de compilación y ejecución del siguiente código?
+~~~~~~~~
+public interface I {
+    int i = 0;
+}
+class C implements I {
+    static  int i = 1;
+}
+public class M extends C {
+    public static void main(String[] args) {
+        System.out.println(++i);
+    }
+}
+//Nota: si la clase M es guardada en otro archivo, el proceso dará como resulado 2, de lo contratio hay un error de compilación.
+~~~~~~~~
+{: .language-ruby}
+- [ ] Se lanza una excepción en tiempo de ejecución.
+- [ ] 1
+- [ ] 0
+- [x] 2
+- [x] Error de compilación
+
+## F. ¿Hay algun error en el código?
+~~~~~~~~
+class N implements T1, T2{
+    public void m(){
+    }
+}
+interface T1{
+    int VALUE = 1;
+    void m();
+}
+interface T2{
+    int VALUE = 2;
+    void m();
+}
+~~~~~~~~
+{: .language-ruby}
+- [ ] El código compilará bien si m() es removido de una de las interfaces
+- [x] El codigo no tiene problemas
+- [ ] Se lanza una excepción en tiempo de ejecución. La clase M no puede implementar ambas interfaces porque genera ambigüedad.
+- [ ] El código se compilará bien si se elimina VALOR de una de las interfaces.
+
 
 
