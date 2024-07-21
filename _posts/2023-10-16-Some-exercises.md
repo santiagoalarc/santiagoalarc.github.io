@@ -460,17 +460,106 @@ public class E0 {
 
 ## M. ¿Cuál será el resultado de intentar compilar y ejecutar el siguiente fragmento de código?
 ~~~~~~~~
-	int result = 0;
+        int result = 0;
         for (int i = 5; i > 2; ++i, i = i - 2) {
             result += i;
+            System.out.println(result);
             System.out.print("A");
         }
+        System.out.println(result);
 ~~~~~~~~
 {: .language-ruby}
 
-- [ ] AAA12
+- [x] AAA12
 - [ ] AA9
 - [ ] La compilación falla
 - [ ] AAAA14
 
+## N. ¿Qué tipo de conector se utiliza para conectar HDD y/o SSD con otros elementos dentro de una unidad del sistema?
+
+- [ ] PCI
+- [ ] SATA
+- [ ] DVI
+- [ ] USB
+
+## O. Su proyecto busca una manera para que los desarrolladores creen aplicaciones sin tener que lidiar con cargas administrativas. Elija el modelo de servicio en la nube correcto según las necesidades descritas.
+- [ ] Software como servicio (SaaS)
+- [ ] Infraestructura como servicio (laaS)
+- [x] Plataforma como servicio (PaaS)
+
+## P. ¿A qué campo de actividad se refieren los dominios «.com»?
+- [ ] Instituciones educacionales
+- [x] Empresas comerciales
+- [ ] Empresas no comerciales
+
+## Q. ¿Qué es un hash?
+- [ ] Una contraseña cifrada
+- [ ] Una imagen de texto de datos prácticamente única (A virtually unique text image of data)
+- [ ] El resultado de la operación XOR aplicada a un mensaje y una clave de cifrado
+- [ ] Una clave privada en cifrado asimétrico
+
+## R. Convierte el número OxAC9 al sistema decimal.
+
+- [ ] 32,856
+- [ ] 39,946
+- [ ] 15,904
+- [x] 41,161
+
+## S. ¿Con qué frecuencia se realizan reuniones stand-up?
+
+- [ ] Dos veces al día: al principio del día y al final.
+- [ ] Al comienzo de cada sprint
+- [x] Una vez al día
+- [ ] Al final de cada sprint
+- [ ] Una vez a la semana, generalmente el lunes o viernes.
+
+
+## T. El método de copia de seguridad se puede ilustrar con el siguiente ejemplo: "Se realiza una copia de seguridad completa el lunes. El martes, sólo se realizan copias de seguridad de los archivos que se modificaron el lunes. El miércoles, sólo se realizan copias de seguridad de los archivos que se modificaron el martes. "?
+
+- [ ] CDP (Continuous Data Protection)
+- [x] Incremental
+- [ ] Sólo completo
+- [ ] No estructurado
+
+## U. Supongamos que abre la URL https://mail.google.com/mail/u/0/#sent en tu navegador. ¿Qué parte de la URL no se utiliza para formar la solicitud HTTP?
+
+- [x] La parte "#sent" que se encuentra al final de la URL
+- [ ] La parte "mail" en el nombre de host "mail.google.com"
+- [ ] El prefijo de la URL, "https://"
+- [ ] El final de la solicitud después del nombre de host, "/mail/u/0/#sent"
+
+## V. ¿Cuál de los siguientes formatos se utiliza para gráficos vectoriales?
+
+- [ ] jpeg
+- [ ] gif
+- [ ] bmp
+- [x] svg
+- [ ] png
+
+## W. ¿Cuál de las siguientes codificaciones tiene una longitud fija?
+- [ ] UTF-32
+- [ ] UTF-8
+- [ ] UTF-16
+- [x] ASCII
+
+## X. ¿Qué es un nivel (tier) en la arquitectura de una aplicación?
+
+- [ ] El código responsable de almacenar y recuperar los datos. //(Capa de acceso de datos)
+- [ ] El código responsable de mostrar una interfaz de usuario. //(Capa de presentación)
+- [x] Una separación lógica del código de la aplicación.
+- [ ] Una separación física de una aplicación en varias máquinas.
+- [ ] El código responsable de la coordinación de aplicaciones.
+
+## Y. ¿Cuál de las siguientes licencias es una licencia copyleft?
+
+- [ ] Licencia Apache
+- [ ] Licencia BSD
+- [ ] Licencia MIT
+- [x] Licencia pública general GNU
+
+## Z. ¿Qué tipo de hipervisor consta de dos partes: un hipervisor delgado que controla el procesador y la memoria, y un sistema operativo de servicio especial que se ejecuta bajo su control y que Microsoft Hyper-V puede presentar como ejemplo?
+
+- [ ] Nativo (Native)
+- [ ] Alojado (Hosted)
+- [x] Híbrido (Hybrid)
 
