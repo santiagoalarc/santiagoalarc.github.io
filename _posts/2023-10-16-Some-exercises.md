@@ -450,14 +450,27 @@ public class E0 {
 - [x] long
 - [x] int
 
-## L. ¿Cuál de estas listas de parámetros NO tiene un constructor correspondiente en la clase String?
+## L. ¿Cuál es el propósito de la clase Colelction?
 
-- [ ] (String str)
-- [ ] (StringBuffer sb)
-- [x] (int capacity)
-- [ ] (char[] value)
-- [ ] ()
+- [ ] Para manejar la entrada del usuario.
+- [ ] Definir la estructura de los objetos.
+- [x] Proporcionar una forma de almacenar y manipular grupos de objetos.
+- [ ] Para crear nuevos objetos.
 
 
+## M. ¿Cuál será el resultado de intentar compilar y ejecutar el siguiente fragmento de código?
+~~~~~~~~
+	int result = 0;
+        for (int i = 5; i > 2; ++i, i = i - 2) {
+            result += i;
+            System.out.print("A");
+        }
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] AAA12
+- [ ] AA9
+- [ ] La compilación falla
+- [ ] AAAA14
 
 
