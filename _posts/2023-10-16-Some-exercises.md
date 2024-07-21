@@ -233,7 +233,7 @@ public class StaticQuest12{
 - [ ] [4, 5]
 - [ ] [5, 4, 4]
 
-## 10. Dado el siguiente códgio para las clases CustomExeption y Custom, ¿Cúal es el resultado?
+## 10. Dado el siguiente código para las clases CustomExeption y Custom, ¿Cúal es el resultado?
 ~~~~~~
 
 class Custom{
@@ -260,7 +260,126 @@ class Custom{
 - [ ] CR
 - [ ] Una compilación fallida ocurrirá en la línea 1
 
+## 11. ¿Cuál será la salida del programa cuando compule y corra?
+~~~~~~~~
+public class C21 {
+    public static void main(String[] args) {
 
+        List<Integer> date = new ArrayList<>();
+        date.add(2017);
+        date.add(2018);
+        date.add(2019);
+        System.out.println(date);
+        for (int i = 0; i < date.size(); i++){
+            int val = date.get(i);
+            date.set(i, ++val);
+        }
+        System.out.println(date);
+	}
+}
+
+~~~~~~~~
+{: .language-ruby}
+- [ ] [2017, 2018, 2019][2018, 2019, 2017]
+- [ ] An java.util.ConcurrentModificationException is thrown at runtime.
+- [ ] [2017, 2018, 2019][2020, 2019, 2018]
+- [ ] [2017, 2018, 2019][2020, 2018, 2019]
+- [ ] [2017, 2018, 2019][2017, 2018, 2019]
+- [x] [2017, 2018, 2019][2018, 2019, 2020]
+
+## 12. Que 3 declaraciones de parámetros pueden der intesertadas en la línea 1 
+(como un tipo de paramtro) asique el programa compile sin warnings?
+~~~~~~~~
+interface Print{}
+    class Animal implements Print{}
+    class Mammal extends Animal{}
+    class Reptile extends Animal{}
+    public class T39 {
+        public static void main(String[] args) {
+
+            List<Animal> a = new ArrayList<>();
+            List<Mammal> b = new ArrayList<>();
+            List<Reptile> c = new ArrayList<>();
+            examine(a);
+            examine(b);
+            examine(c);
+        }
+        
+        static void examine(____________ pets){ //linea 1
+            System.out.println("ok!");
+        }
+
+~~~~~~~~
+{: .language-ruby}
+
+- [x] List<? extends Print>
+- [ ] List<? super Animal>
+- [ ] List<? extends Print & Comparable>
+- [ ] List<? super Print>
+- [x] List<? extends Animal>
+- [x] List<?>
+- [ ] List<? super Object>
+- [ ] Only two correct answers
+
+## 13. ¿C
+~~~~~~~~
+    DIAMANTE(20), RUBI(10), PERLAS(5), CRISTAL();
+
+    private Double cost;
+    Exercise13(double cost){
+        this.cost = cost;
+    }
+    public boolean equals(Object other){
+        if (this == other)
+            return true;
+        if (!(other instanceof Exercise13))
+            return false;
+        return cost.equals(((Exercise13) other).cost);
+    }
+
+    public static void main(String[] args) {
+        RUBI = PERLAS;
+        System.out.println(RUBI);
+        System.out.println(RUBI.equals(PERLAS));
+    }
+~~~~~~~~
+{: .language-ruby}
+- [ ] El programa no compilará, porque hay 3 errores en el programa
+- [ ] El programa no compilará, porque hay 2 errores en el programa
+- [ ] El programa no compilará, porque hay 1 error en el programa
+- [ ] El programa compilará e imprimirá
+	~~~~~~~~
+	RUBY
+	False
+	~~~~~~~~
+	{: .language-ruby}
+
+
+
+
+
+## 13. ¿C
+~~~~~~~~
+
+~~~~~~~~
+{: .language-ruby}
+- [ ] 
+
+
+## 13. ¿C
+~~~~~~~~
+
+~~~~~~~~
+{: .language-ruby}
+- [ ] 
+
+
+## 13. ¿C
+~~~~~~~~
+
+~~~~~~~~
+{: .language-ruby}
+- [ ] 
 
 
 ## 3. ¿Cuál de las siguientes opciones es correcta?
