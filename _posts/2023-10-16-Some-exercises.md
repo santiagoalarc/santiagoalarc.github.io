@@ -348,7 +348,7 @@ public class Value {
 - [x] La primera declaración de cada constructor es una llamada legal al método super() o this().
 - [ ] Los constructores no se pueden sobrecargar.
 
-## E. ¿Cual será la salida como un resultado de compilación y ejecución del siguiente código?
+## E. ¿Cual será la salida como resultado de compilación y ejecución del siguiente código?
 ~~~~~~~~
 public interface I {
     int i = 0;
@@ -390,6 +390,47 @@ interface T2{
 - [x] El codigo no tiene problemas
 - [ ] Se lanza una excepción en tiempo de ejecución. La clase M no puede implementar ambas interfaces porque genera ambigüedad.
 - [ ] El código se compilará bien si se elimina VALOR de una de las interfaces.
+
+## G. ¿Cuál será el resultado del siguiente código?
+~~~~~~~~
+public class E0 {
+
+    public static void main(String[] args) {
+        try{
+            System.out.println("A" + " " + 1/0);
+        }catch (ArithmeticException e){
+            System.out.println("B");
+        }
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+- [ ] A
+- [x] B
+- [ ] AB
+- [ ] A B
+      
+## H. ¿Cuál será el resultado de compilación y ejecución del siguiente pedazo de código?
+~~~~~~~~
+        String s1 = "abc";
+        StringBuffer s2 = new StringBuffer(s1);
+        System.out.println(s1.equals(s2) + " ");
+        System.out.println(s1 == s2);
+~~~~~~~~
+{: .language-ruby}
+- [x] Fallo en la compilación
+- [ ] true false
+- [ ] true true
+- [ ] false false
+- [ ] false true
+
+## I. ¿Cuál de estas es una definición adecuada de una clase Foo que NO PUEDE ser una subclase?
+
+- [ ] class Foo{}
+- [ ] abstract class Foo{}
+- [ ] public class Foo{}
+- [x] final class Foo{}
+
 
 
 
