@@ -431,6 +431,33 @@ public class E0 {
 - [ ] public class Foo{}
 - [x] final class Foo{}
 
+## J. ¿Cuál interfaz no permite duplicados?
+
+- [x] Set
+- [ ] Deque
+- [ ] Queue
+- [ ] List
+
+## K. ¿Qué tipo de dato debería ser insetado en vez de un TYPE asi que el codigo compile correctamete?
+~~~~~~~~
+        byte a = 1;
+	TYPE b = a + 1;
+-- Nota: cuando se hace la suma se
+~~~~~~~~
+{: .language-ruby}
+- [ ] short
+- [ ] byte
+- [x] long
+- [x] int
+
+## L. ¿Cuál de estas listas de parámetros NO tiene un constructor correspondiente en la clase String?
+
+- [ ] (String str)
+- [ ] (StringBuffer sb)
+- [x] (int capacity)
+- [ ] (char[] value)
+- [ ] ()
+
 
 
 
