@@ -682,3 +682,52 @@ public class E0 {
 - [ ] Alojado (Hosted)
 - [x] Híbrido (Hybrid)
 
+
+## AA. ¿Cuál de los siguentes métodos es un nombre válido?
+- [ ] act!ion()
+- [x] $action()
+- [ ] /action()
+- [ ] action#()
+
+## AB. ¿Cuál será el resultado de compilar y ejecutar el fragmento de código?
+~~~~~~~~
+        int i = 2;
+        int j = 10;
+        i = switch (i){
+            case 1 -> --j;
+            case 2, 3 -> --j;
+            case 4 -> --j;
+            case 5 -> --j;
+            default -> {
+                System.out.print(i +j + " " );
+                yield i + j;
+            }
+        };
+        System.out.println(i);
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 10
+- [ ] 10 9
+- [ ] 9 9
+- [x] 9
+- [ ] 8
+- [ ] 9 8
+
+## AC. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+        double d[] = {1, 2, 3};
+        Object db = null;
+        d = db;
+        db = d;
+        System.out.println(d == db);
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] Fallo en la compilación (can't convert double[] to Object)
+- [ ] false
+- [ ] true
+- [ ] Fallo en la compilación (can't convert Object to double[])
+
+
+
