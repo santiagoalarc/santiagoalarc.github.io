@@ -727,7 +727,44 @@ public class E0 {
 - [ ] Fallo en la compilación (can't convert double[] to Object)
 - [ ] false
 - [ ] true
-- [ ] Fallo en la compilación (can't convert Object to double[])
+- [x] Fallo en la compilación (can't convert Object to double[])
 
+## AD. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+        int x, y = 1;
+        x = 7;
+        boolean match  = x != 7 && x/0 == 0;
+        System.out.println(match);
+~~~~~~~~
+{: .language-ruby}
 
+- [x] false
+- [ ] Se lanza una excepción en tiempo de ejecución
+- [ ] true
+- [ ] Error de compilación
+
+## AE. El espacio PermGen ha sido reemplazado por cuál de estos en Java 8: 
+
+- [ ] MetaGenSpace
+- [ ] PermSpace
+- [x] Metaspace
+- [ ] PermSpaceGen
+
+## AD. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+	int x = 0;
+        for (;;){
+            if (x < 2)
+                System.out.print(x++);
+            else break;
+        }
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 012
+- [ ] 0123456789101112 y hasta el infiito
+- [ ] 0
+- [ ] Se lanza una excepción en tiempo de ejecución
+- [x] 01
+- [ ] Error de compilación
 
