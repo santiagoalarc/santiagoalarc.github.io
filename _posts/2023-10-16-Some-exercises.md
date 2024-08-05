@@ -683,13 +683,13 @@ public class E0 {
 - [x] Híbrido (Hybrid)
 
 
-## AA. ¿Cuál de los siguentes métodos es un nombre válido?
+## A1. ¿Cuál de los siguentes métodos es un nombre válido?
 - [ ] act!ion()
 - [x] $action()
 - [ ] /action()
 - [ ] action#()
 
-## AB. ¿Cuál será el resultado de compilar y ejecutar el fragmento de código?
+## A2. ¿Cuál será el resultado de compilar y ejecutar el fragmento de código?
 ~~~~~~~~
         int i = 2;
         int j = 10;
@@ -714,7 +714,7 @@ public class E0 {
 - [ ] 8
 - [ ] 9 8
 
-## AC. ¿Cuál será el resultado de compilar y ejecutar el programa?
+## A3. ¿Cuál será el resultado de compilar y ejecutar el programa?
 ~~~~~~~~
         double d[] = {1, 2, 3};
         Object db = null;
@@ -729,7 +729,7 @@ public class E0 {
 - [ ] true
 - [x] Fallo en la compilación (can't convert Object to double[])
 
-## AD. ¿Cuál será el resultado de compilar y ejecutar el programa?
+## A4. ¿Cuál será el resultado de compilar y ejecutar el programa?
 ~~~~~~~~
         int x, y = 1;
         x = 7;
@@ -743,14 +743,14 @@ public class E0 {
 - [ ] true
 - [ ] Error de compilación
 
-## AE. El espacio PermGen ha sido reemplazado por cuál de estos en Java 8: 
+## A5. El espacio PermGen ha sido reemplazado por cuál de estos en Java 8: 
 
 - [ ] MetaGenSpace
 - [ ] PermSpace
 - [x] Metaspace
 - [ ] PermSpaceGen
 
-## AD. ¿Cuál será el resultado de compilar y ejecutar el programa?
+## A6. ¿Cuál será el resultado de compilar y ejecutar el programa?
 ~~~~~~~~
 	int x = 0;
         for (;;){
@@ -762,9 +762,141 @@ public class E0 {
 {: .language-ruby}
 
 - [ ] 012
-- [ ] 0123456789101112 y hasta el infiito
+- [ ] 0123456789101112 y hasta el infinito
 - [ ] 0
 - [ ] Se lanza una excepción en tiempo de ejecución
 - [x] 01
 - [ ] Error de compilación
+
+## A7. Señala las 3 lienas que conitneen errores:
+
+- [ ] short a15[] = new short[]{};
+- [ ] double a10[] = {1.0, 2.1};
+- [x] int a28[1] = new int[1];
+- [ ] boolean b10[] = {Boolean.TRUE};
+- [x] int a3[1][] = new int[2][1];
+- [x] String a25[] = new String[2]{"a", "b"};
+
+## A8. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+public class Exercise8 {
+    static int []a;
+    public static void main(String[] args) {
+        System.out.println(a.toString());
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 0
+- [ ] null
+- [ ] Error de compilación
+- [ ] Un ArrayIndexOutOfBoundsExpetion es lanzado en tiempo de ejecución
+- [x] Un NullPointerExcpetion es lanzado en tiempo de ejecución 
+
+## A9. ¿Cuantas línea del siguiente programa contienen errores de compilación?
+~~~~~~~~
+package exercises3;
+public class Exercise9 {
+
+    private int var = 77;
+    public void Exercise9(){
+        super();
+    }
+    public Exercise9(int var){
+        this.var = this.var;
+    }
+    public static void main(String[] args) {
+        System.out.print(new exercises3.Exercise9(2).var);
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 0
+- [x] 1
+- [ ] 2
+- [ ] 3
+- [ ] 4
+
+## A10. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+public class Exercise10 {
+
+    int calc(int n){
+        int result;
+        if (n == 1) return 1;
+        result = calc(n -1 )*n;
+        return result;
+    }
+}
+class Main{
+    public static void main(String[] args) {
+        Exercise10 exercise10 = new Exercise10();
+        System.out.println(exercise10.calc(5));
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 6
+- [ ] 12
+- [ ] 30
+- [x] 120
+- [ ] 720
+
+
+## A11. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+public class Exercise11 {
+    public static void main(String[] args) {
+        int x = 7;
+        IntObject intObject = new IntObject();
+        intObject.number = 7;
+        IntObject.bump(x, intObject);
+        System.out.print(x + " " + intObject.number);
+    }
+}
+
+class IntObject {
+    public int number;
+    public static void bump(int n, IntObject ob) {
+        n++;
+        ob.number++;
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 7 7
+- [ ] 8 7
+- [ ] 8 8
+- [x] 7 8
+
+## A40. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+public class Exercise11 {
+    public static void main(String[] args) {
+        long x = 3;
+        if (x <= 0) {
+            if (x == 0) {
+                System.out.print("a ");
+            } else {
+                System.out.print("b ");
+            }
+        }
+        System.out.print("c ");
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] No output
+- [ ] b c
+- [ ] a c
+- [x] c
+- [ ] a b c
+- [ ] Error de compilación
+
+
 
