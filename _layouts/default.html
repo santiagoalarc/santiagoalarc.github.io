@@ -12,7 +12,43 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    <style>
+      .menu-toggle {
+        display: none;
+      }
+
+      .menu-icon {
+        display: none;
+        cursor: pointer;
+        font-size: 24px;
+      }
+
+      nav {
+        display: flex;
+        gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+          flex-direction: column;
+          background-color: #f9f9f9;
+          position: absolute;
+          top: 60px;
+          right: 10px;
+          border: 1px solid #ccc;
+          padding: 10px;
+        }
+
+        .menu-toggle:checked + .menu-icon + nav {
+          display: flex;
+        }
+
+        .menu-icon {
+          display: block;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -25,6 +61,10 @@
             <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
             <p class="site-description">{{ site.description }}</p>
           </div>
+
+          <!-- Menú hamburguesa -->
+          <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+          <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
           <nav>
             <a href="{{ site.baseurl }}/">Blog</a>
