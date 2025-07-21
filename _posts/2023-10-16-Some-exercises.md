@@ -2,6 +2,12 @@
 layout: post
 title: You're up and running!
 ---
+
+[Inicio]({{ site.baseurl }}/)  
+[Paradigmas de Programación]({{ site.baseurl }}/programming-paradigms/)  
+[Sobre el curso]({{ site.baseurl }}/about/)  
+
+---
 ## 1. ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
 ~~~~~~~~
 try (Connection connection = DriverManager.getConnection(databaseUrl);
