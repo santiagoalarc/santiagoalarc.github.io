@@ -105,11 +105,7 @@ Un Dockerfile se compone de una serie de instrucciones, cada una en una línea s
 | Instrucción  | Descripción     |
 | :---------- | :--------------- |
 | **FROM** |  Especifica la imagen base sobre la cual se construirá la nueva imagen. Es el punto de partida. Por ejemplo, FROM ubuntu:22.04 indica que la imagen se basará en Ubuntu versión 22.04.   |
-| **RUN**   | Ejecuta comandos dentro de la imagen durante el proceso de construcción. Se usa comúnmente para instalar paquetes, crear directorios, etc. Ejemplo: 
-~~~~~~~~
-RUN apt-get update && apt-get install -y nginx.
-~~~~~~~~
-{: .language-ruby}
-|
+| **RUN**   | Ejecuta comandos dentro de la imagen durante el proceso de construcción. Se usa comúnmente para instalar paquetes, crear directorios, etc. Ejemplo: RUN apt-get update && apt-get install -y nginx.|
 |  **COPY** | Copia archivos o directorios del sistema de archivos local al sistema de archivos de la imagen. Ejemplo: COPY . /app.|
-
+|  **ADD** |  Similar a COPY, pero con funcionalidades adicionales, como la extracción automática de archivos comprimidos o la descarga de URLs. |
+| **WORKDIR** | Establece el directorio de trabajo actual para las instrucciones posteriores como RUN, CMD, ENTRYPOINT, COPY, y ADD. |
