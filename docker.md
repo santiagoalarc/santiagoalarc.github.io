@@ -100,49 +100,48 @@ Un Dockerfile es un documento de texto que contiene todas las instrucciones que 
 El propósito principal de un Dockerfile es automatizar la creación de imágenes de Docker. En lugar de ejecutar comandos manualmente para instalar software, configurar entornos y copiar archivos, todas estas acciones se definen en el Dockerfile. Esto garantiza que la imagen se construya de la misma manera cada vez, lo que es fundamental para la consistencia y la reproducibilidad en el desarrollo y la implementación de software.
 
 ### Componentes clave de un Dockerfile
-# Componentes clave de un Dockerfile
 
 Un Dockerfile se compone de una serie de instrucciones, cada una en una línea separada, que se ejecutan en orden. Algunas de las instrucciones más comunes incluyen:
 
-## FROM
+#### FROM
 Especifica la imagen base sobre la cual se construirá la nueva imagen. Es el punto de partida. Por ejemplo:
 ~~~~~~~~
  `FROM ubuntu:22.04` //Indica que la imagen se basará en Ubuntu versión 22.04.
  ~~~~~~~~
  {: .language-ruby}
 
-## RUN
+#### RUN
 Ejecuta comandos dentro de la imagen durante el proceso de construcción. Se usa comúnmente para instalar paquetes, crear directorios, etc. Ejemplo: 
 ~~~~~~~~
 `RUN apt-get update && apt-get install -y nginx`
 ~~~~~~~~
 {: .language-ruby}
 
-## COPY
+#### COPY
 Copia archivos o directorios del sistema de archivos local al sistema de archivos de la imagen. Ejemplo: 
 ~~~~~~~~
 `COPY . /app`.
 ~~~~~~~~
 {: .language-ruby}
 
-## ADD
+#### ADD
 Similar a COPY, pero con funcionalidades adicionales, como la extracción automática de archivos comprimidos o la descarga de URLs.
 
-## WORKDIR
+#### WORKDIR
 Establece el directorio de trabajo actual para las instrucciones posteriores como RUN, CMD, ENTRYPOINT, COPY, y ADD.
 
-## EXPOSE
+#### EXPOSE
 Declara los puertos en los que la aplicación dentro del contenedor escuchará. Es solo una documentación; no publica el puerto automáticamente. Ejemplo: 
 ~~~~~~~~
 `EXPOSE 80`
 ~~~~~~~~
 {: .language-ruby}
 
-## CMD
+#### CMD
 Proporciona el comando predeterminado que se ejecutará cuando se inicie un contenedor a partir de la imagen. Solo puede haber una instrucción CMD por Dockerfile.
 
-## ENTRYPOINT
+#### ENTRYPOINT
 Similar a CMD, pero está diseñado para que el contenedor se ejecute como un ejecutable. A menudo se utiliza junto con CMD para proporcionar argumentos predeterminados.
 
-## ENV
+#### ENV
 Establece variables de entorno dentro de la imagen.
