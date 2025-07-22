@@ -8,6 +8,7 @@ title: You're up and running!
 [Paradigma Cloud native]({{ site.baseurl }}/cloud-native/)  
 [Diferencias entre IaaS, PaaS, SaaS y MaaS]({{ site.baseurl }}/diferences-as/)  
 [Ejercicios programación]({{ site.baseurl }}/programming-exercises/)   
+[Docker]({{ site.baseurl  }}/docker/)  
 [Sobre el curso]({{ site.baseurl }}/about/)  
 
 ---
