@@ -1,16 +1,9 @@
 ---
 layout: page
-title: Cloud Native
+title: Ejercicios de programaciój
 permalink: /programming-exercises/
 ---
 
-[Inicio]({{ site.baseurl }}/)  
-[Paradigmas de Programación]({{ site.baseurl }}/programming-paradigms/)  
-[Paradigma Cloud native]({{ site.baseurl }}/cloud-native/)  
-[Diferencias entre IaaS, PaaS, SaaS y MaaS]({{ site.baseurl }}/diferences-as/)  
-[Sobre el curso]({{ site.baseurl }}/about/)  
-
----
 ## 1. ¿Cuántas filas son añadidas a la tabla herramientas despues de correr lo siguiente?
 ~~~~~~~~
 try (Connection connection = DriverManager.getConnection(databaseUrl);
