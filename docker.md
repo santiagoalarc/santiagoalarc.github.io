@@ -87,6 +87,29 @@ Un contenedor está definido por su imagen, así como por las opciones de config
 
 El siguiente comando ejecuta un contenedor basado en Ubuntu, lo conecta interactivamente a tu sesión de línea de comandos local y ejecuta `/bin/bash`.
 
-```bash
+~~~~~~~~
 docker run -i -t ubuntu /bin/bash
+~~~~~~~~
+{: .language-ruby}
+
+## Dockerfile
+
+Un Dockerfile es un documento de texto que contiene todas las instrucciones que Docker necesita para construir automáticamente una imagen de Docker. Piénsalo como la receta para crear un software empaquetado.
+
+###  ¿Para qué sirve un Dockerfile?
+El propósito principal de un Dockerfile es automatizar la creación de imágenes de Docker. En lugar de ejecutar comandos manualmente para instalar software, configurar entornos y copiar archivos, todas estas acciones se definen en el Dockerfile. Esto garantiza que la imagen se construya de la misma manera cada vez, lo que es fundamental para la consistencia y la reproducibilidad en el desarrollo y la implementación de software.
+
+### Componentes clave de un Dockerfile
+Un Dockerfile se compone de una serie de instrucciones, cada una en una línea separada, que se ejecutan en orden. Algunas de las instrucciones más comunes incluyen:
+
+| Instrucción  | Descripción     |
+| :---------- | :--------------- |
+| **FROM** |  Especifica la imagen base sobre la cual se construirá la nueva imagen. Es el punto de partida. Por ejemplo, FROM ubuntu:22.04 indica que la imagen se basará en Ubuntu versión 22.04.   |
+| **RUN**   | Ejecuta comandos dentro de la imagen durante el proceso de construcción. Se usa comúnmente para instalar paquetes, crear directorios, etc. Ejemplo: 
+~~~~~~~~
+RUN apt-get update && apt-get install -y nginx.
+~~~~~~~~
+{: .language-ruby}
+|
+|  **COPY** | Copia archivos o directorios del sistema de archivos local al sistema de archivos de la imagen. Ejemplo: COPY . /app.|
 
