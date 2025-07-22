@@ -10,6 +10,7 @@ Estas técnicas permiten crear sistemas de bajo acoplamiento que son resilentes,
 
 La "Cloud Native Computing Foundation" busca impulsar la adopción de este paradigma mediante el fomento y mantenimiento de un ecosistema de proyectos de código abierto y neutro con respecto a los proveedores. Democratizamos los patrones modernos para que estas innovaciones sean accesibles para todos.
 [Referencia](https://github.com/cncf/toc/blob/main/DEFINITION.md#español)
+
 [Caso de estudio de Nubank](https://www.cncf.io/case-studies/nubank/)
 
 Cloud native computing uses an open source software stack to deploy applications as microservices, packaging each part into its own container, and dynamically orchestrating those containers to optimize resource utilization.
