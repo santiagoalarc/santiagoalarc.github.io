@@ -128,7 +128,35 @@ Copia archivos o directorios del sistema de archivos local al sistema de archivo
 Similar a COPY, pero con funcionalidades adicionales, como la extracción automática de archivos comprimidos o la descarga de URLs.
 
 #### WORKDIR
-Establece el directorio de trabajo actual para las instrucciones posteriores como RUN, CMD, ENTRYPOINT, COPY, y ADD.
+El comando WORKDIR en un Dockerfile se usa para establecer el directorio de trabajo para las instrucciones posteriores como RUN, CMD, ENTRYPOINT, COPY, y ADD. Es como usar el comando cd en la línea de comandos de Linux. 📂
+
+##### ¿Cómo funciona WORKDIR?
+Cuando especificas WORKDIR /app, todas las instrucciones que sigan a esa línea se ejecutarán dentro del directorio /app del contenedor, a menos que se especifique una ruta absoluta diferente. Si el directorio especificado no existe, Docker lo creará automáticamente.
+
+*** Ejemplo ***:
+Sin WORKDIR:
+
+~~~~~~~~
+FROM ubuntu:latest
+RUN mkdir /app
+RUN cd /app && echo "Hola desde app" > file.txt
+CMD cat /app/file.txt
+~~~~~~~~
+{: .language-ruby}
+
+En este ejemplo, necesitas especificar la ruta completa /app/file.txt para acceder al archivo.
+
+Con WORKDIR:
+
+~~~~~~~~
+FROM ubuntu:latest
+WORKDIR /app
+RUN echo "Hola desde app" > file.txt
+CMD cat file.txt
+~~~~~~~~
+{: .dockerfile}
+
+Aquí, después de WORKDIR /app, las instrucciones RUN y CMD se ejecutan directamente dentro de /app, haciendo que las rutas sean relativas y el Dockerfile más limpio y fácil de leer.
 
 #### EXPOSE
 Declara los puertos en los que la aplicación dentro del contenedor escuchará. Es solo una documentación; no publica el puerto automáticamente. Ejemplo: 
