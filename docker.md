@@ -149,7 +149,7 @@ FROM python:3.9-slim-buster: Una imagen de Python 3.9 más ligera basada en Debi
 FROM scratch: Una imagen base completamente vacía. Se usa para crear imágenes mínimas "desde cero", como las que contienen solo un binario compilado estáticamente. Es el Dockerfile más pequeño posible.
  ~~~~~~~~
  {: .language-ruby}
- 
+
 #### RUN
 Ejecuta comandos dentro de la imagen durante el proceso de construcción. Se usa comúnmente para instalar paquetes, crear directorios, etc. Ejemplo: 
 ~~~~~~~~
@@ -213,3 +213,155 @@ Similar a CMD, pero está diseñado para que el contenedor se ejecute como un ej
 
 #### ENV
 Establece variables de entorno dentro de la imagen.
+
+## Orden Sugerido de Comandos en un Dockerfile
+Aunque no hay un orden "obligatorio" estricto para todos los comandos (más allá de FROM que siempre va primero), hay un orden recomendado que optimiza el caching de Docker y reduce los tiempos de construcción. La idea principal es colocar las instrucciones que cambian con menos frecuencia al principio y las que cambian con más frecuencia al final. 🚀
+
+Aquí te presento un orden lógico y optimizado:
+
+### FROM
+Propósito: Especifica la imagen base.
+
+Frecuencia de cambio: Rara vez cambia.
+
+Ubicación: Siempre es la primera instrucción no comentada.
+
+Ejemplo:
+
+~~~~~~~~
+FROM node:18-alpine
+~~~~~~~~
+{: .language-ruby}
+
+### ARG y ENV (Variables de Entorno y Argumentos de Construcción)
+* Propósito: Define variables que se pueden usar durante la construcción (ARG) o variables de entorno que estarán disponibles en el contenedor en tiempo de ejecución (ENV).
+
+* Frecuencia de cambio: Puede cambiar según configuraciones, pero idealmente se definen temprano.
+
+* Ubicación: Después de FROM.
+
+* Ejemplo:
+
+~~~~~~~~
+ARG NODE_VERSION=18
+ENV PORT=3000
+~~~~~~~~
+{: .language-ruby}
+
+### WORKDIR
+
+
+* Propósito: Establece el directorio de trabajo para las instrucciones posteriores.
+
+Frecuencia de cambio: Rara vez cambia una vez definido para el proyecto.
+
+Ubicación: Después de definir variables, antes de copiar archivos de la aplicación.
+
+Ejemplo:
+
+Dockerfile
+
+WORKDIR /app
+COPY / ADD (Archivos de Dependencias de la Aplicación)
+Propósito: Copia solo los archivos necesarios para instalar las dependencias (ej., package.json, requirements.txt).
+
+Frecuencia de cambio: Los archivos de dependencias suelen cambiar con menos frecuencia que el código fuente completo.
+
+Ubicación: Antes de la instrucción de instalación de dependencias. Esto es clave para el caching. Si solo cambian los archivos de código fuente, Docker puede reutilizar la capa de instalación de dependencias.
+
+Ejemplo (para Node.js):
+
+Dockerfile
+
+COPY package.json package-lock.json ./
+Ejemplo (para Python):
+
+Dockerfile
+
+COPY requirements.txt ./
+RUN (Instalar Dependencias)
+Propósito: Ejecuta comandos para instalar las dependencias de la aplicación (ej., npm install, pip install).
+
+Frecuencia de cambio: Cambia cuando se añaden o actualizan dependencias.
+
+Ubicación: Inmediatamente después de copiar los archivos de dependencias.
+
+Ejemplo:
+
+Dockerfile
+
+RUN npm install
+o
+
+Dockerfile
+
+RUN pip install -r requirements.txt
+COPY / ADD (Código Fuente de la Aplicación)
+Propósito: Copia el resto del código fuente de tu aplicación.
+
+Frecuencia de cambio: Cambia muy frecuentemente durante el desarrollo.
+
+Ubicación: Después de que todas las dependencias estén instaladas y cacheables. Esto asegura que si solo cambia el código fuente, solo esta capa y las siguientes se reconstruirán, no las de dependencias.
+
+Ejemplo:
+
+Dockerfile
+
+COPY . .
+EXPOSE
+Propósito: Informa a Docker que el contenedor escuchará en los puertos de red especificados en tiempo de ejecución.
+
+Frecuencia de cambio: Rara vez cambia.
+
+Ubicación: Después de copiar el código, ya que es una configuración del contenedor.
+
+Ejemplo:
+
+Dockerfile
+
+EXPOSE 3000
+CMD y/o ENTRYPOINT
+Propósito: Define el comando predeterminado o el punto de entrada ejecutable cuando se inicia el contenedor.
+
+Frecuencia de cambio: Generalmente se define una vez.
+
+Ubicación: Al final del Dockerfile, ya que son las instrucciones finales de ejecución del contenedor.
+
+Ejemplo (CMD):
+
+Dockerfile
+
+CMD ["npm", "start"]
+Ejemplo (ENTRYPOINT con CMD):
+
+Dockerfile
+
+ENTRYPOINT ["/usr/bin/python3"]
+CMD ["app.py"]
+Ejemplo Completo de un Dockerfile Optimizado:
+Dockerfile
+
+# 1. Imagen base
+FROM node:18-alpine
+
+# 2. Variables de entorno (si aplica)
+ENV NODE_ENV=production
+
+# 3. Directorio de trabajo
+WORKDIR /app
+
+# 4. Copiar archivos de dependencias (para aprovechar el caching)
+COPY package.json package-lock.json ./
+
+# 5. Instalar dependencias
+RUN npm install --production
+
+# 6. Copiar el resto del código de la aplicación
+COPY . .
+
+# 7. Exponer puerto
+EXPOSE 3000
+
+# 8. Comando para iniciar la aplicación
+CMD ["npm", "start"]
+Seguir este orden te ayudará a construir imágenes Docker de manera más rápida y eficiente, aprovechando al máximo el sistema de caching de Docker.
