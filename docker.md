@@ -43,21 +43,21 @@ Docker es ligero y rápido. Proporciona una alternativa viable y rentable a las 
 
 ## Arquitectura de Docker
 
-Docker utiliza una arquitectura cliente-servidor. El cliente Docker se comunica con el demonio Docker, que realiza el trabajo pesado de construir, ejecutar y distribuir tus contenedores Docker. El cliente y el demonio pueden ejecutarse en el mismo sistema, o puedes conectar un cliente Docker a un demonio Docker remoto. El cliente y el demonio se comunican mediante una API REST, a través de sockets UNIX o una interfaz de red. Otro cliente Docker es Docker Compose, que te permite trabajar con aplicaciones compuestas por un conjunto de contenedores.
+Docker utiliza una arquitectura cliente-servidor. El cliente Docker se comunica con el Docker daemon, que realiza el trabajo pesado de construir, ejecutar y distribuir tus contenedores Docker. El cliente y el Docker daemon pueden ejecutarse en el mismo sistema, o puedes conectar un cliente Docker a un Docker daemon remoto. El cliente y el Docker daemon se comunican mediante una API REST, a través de sockets UNIX o una interfaz de red. Otro cliente Docker es Docker Compose, que te permite trabajar con aplicaciones compuestas por un conjunto de contenedores.
 
 ![Docker architecture](/images/docker-architecture.png "Docker architecture")
 
 ### Docker daemon
 
-El demonio Docker (`dockerd`) escucha solicitudes de la API de Docker y gestiona objetos Docker como imágenes, contenedores, redes y volúmenes. Un demonio también puede comunicarse con otros demonios para gestionar servicios Docker.
+El Docker daemon (`dockerd`) escucha solicitudes de la API de Docker y gestiona objetos Docker como imágenes, contenedores, redes y volúmenes. Un Docker daemon también puede comunicarse con otros Docker daemons para gestionar servicios Docker.
 
 ### El cliente Docker
 
-El cliente Docker (`docker`) es la forma principal en que muchos usuarios interactúan con Docker. Cuando usas comandos como `docker run`, el cliente envía estos comandos a `dockerd`, que los ejecuta. El comando `docker` utiliza la API de Docker. El cliente Docker puede comunicarse con más de un demonio.
+El cliente Docker (`docker`) es la forma principal en que muchos usuarios interactúan con Docker. Cuando usas comandos como `docker run`, el cliente envía estos comandos a `dockerd`, que los ejecuta. El comando `docker` utiliza la API de Docker. El cliente Docker puede comunicarse con más de un Docker daemon.
 
 ### Docker Desktop
 
-Docker Desktop es una aplicación fácil de instalar para entornos Mac, Windows o Linux que te permite construir y compartir aplicaciones y microservicios en contenedores. Docker Desktop incluye el demonio Docker (`dockerd`), el cliente Docker (`docker`), Docker Compose, Docker Content Trust, Kubernetes y Credential Helper. Para más información, consulta [Docker Desktop](https://docs.docker.com/desktop/).
+Docker Desktop es una aplicación fácil de instalar para entornos Mac, Windows o Linux que te permite construir y compartir aplicaciones y microservicios en contenedores. Docker Desktop incluye el Docker daemon (`dockerd`), el cliente Docker (`docker`), Docker Compose, Docker Content Trust, Kubernetes y Credential Helper. Para más información, consulta [Docker Desktop](https://docs.docker.com/desktop/).
 
 ### Registros Docker
 
@@ -268,40 +268,37 @@ WORKDIR /app
 * Frecuencia de cambio: Los archivos de dependencias suelen cambiar con menos frecuencia que el código fuente completo.
 * Ubicación: Antes de la instrucción de instalación de dependencias. Esto es clave para el caching. Si solo cambian los archivos de código fuente, Docker puede reutilizar la capa de instalación de dependencias.
 
-Ejemplo (para Node.js):
-
-Dockerfile
-
+* Ejemplo (para Node.js):
+~~~~~~~~
 COPY package.json package-lock.json ./
-Ejemplo (para Python):
+~~~~~~~~
+{: .language-ruby}
 
-Dockerfile
-
+* Ejemplo (para Python):
+~~~~~~~~
 COPY requirements.txt ./
-RUN (Instalar Dependencias)
-Propósito: Ejecuta comandos para instalar las dependencias de la aplicación (ej., npm install, pip install).
+~~~~~~~~
+{: .language-ruby}
 
-Frecuencia de cambio: Cambia cuando se añaden o actualizan dependencias.
-
-Ubicación: Inmediatamente después de copiar los archivos de dependencias.
-
-Ejemplo:
-
-Dockerfile
-
+### RUN (Instalar Dependencias)
+* Propósito: Ejecuta comandos para instalar las dependencias de la aplicación (ej., npm install, pip install).
+* Frecuencia de cambio: Cambia cuando se añaden o actualizan dependencias.
+* Ubicación: Inmediatamente después de copiar los archivos de dependencias.
+* Ejemplo:
+~~~~~~~~
 RUN npm install
+~~~~~~~~
+{: .language-ruby}
 o
-
-Dockerfile
-
+~~~~~~~~
 RUN pip install -r requirements.txt
-COPY / ADD (Código Fuente de la Aplicación)
-Propósito: Copia el resto del código fuente de tu aplicación.
+~~~~~~~~
+{: .language-ruby}
 
-Frecuencia de cambio: Cambia muy frecuentemente durante el desarrollo.
-
-Ubicación: Después de que todas las dependencias estén instaladas y cacheables. Esto asegura que si solo cambia el código fuente, solo esta capa y las siguientes se reconstruirán, no las de dependencias.
-
+### COPY / ADD (Código Fuente de la Aplicación)
+* Propósito: Copia el resto del código fuente de tu aplicación.
+* Frecuencia de cambio: Cambia muy frecuentemente durante el desarrollo.
+* Ubicación: Después de que todas las dependencias estén instaladas y cacheables. Esto asegura que si solo cambia el código fuente, solo esta capa y las siguientes se reconstruirán, no las de dependencias.
 Ejemplo:
 
 Dockerfile
