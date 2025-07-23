@@ -154,7 +154,7 @@ WORKDIR /app
 RUN echo "Hola desde app" > file.txt
 CMD cat file.txt
 ~~~~~~~~
-{: .dockerfile}
+{: .language-ruby}
 
 Aquí, después de WORKDIR /app, las instrucciones RUN y CMD se ejecutan directamente dentro de /app, haciendo que las rutas sean relativas y el Dockerfile más limpio y fácil de leer.
 
