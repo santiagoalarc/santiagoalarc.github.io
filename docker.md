@@ -125,18 +125,18 @@ FROM <imagen>:<etiqueta> [AS <nombre>]
  {: .language-ruby}
 o
 
- ~~~~~~~~
+~~~~~~~~
 FROM <imagen>@<digest> [AS <nombre>]
- ~~~~~~~~
+~~~~~~~~
  {: .language-ruby}
 
-<imagen>: El nombre de la imagen base (ej. ubuntu, node, python).
+< imagen>: El nombre de la imagen base (ej. ubuntu, node, python).
 
-:<etiqueta> (opcional): La versión o "tag" específica de la imagen que quieres usar (ej. ubuntu:22.04, node:18-alpine). Si no se especifica, Docker usará por defecto la etiqueta latest. Es una buena práctica especificar una etiqueta para asegurar builds consistentes.
+:< etiqueta> (opcional): La versión o "tag" específica de la imagen que quieres usar (ej. ubuntu:22.04, node:18-alpine). Si no se especifica, Docker usará por defecto la etiqueta latest. Es una buena práctica especificar una etiqueta para asegurar builds consistentes.
 
-@<digest> (opcional): Un digest SHA256 de la imagen. Esto asegura una reproducibilidad absoluta, ya que el digest identifica de forma única el contenido de la imagen.
+@< digest> (opcional): Un digest SHA256 de la imagen. Esto asegura una reproducibilidad absoluta, ya que el digest identifica de forma única el contenido de la imagen.
 
-AS <nombre> (opcional): Utilizado en Dockerfiles multi-etapa (multi-stage builds) para asignar un nombre a esta etapa de construcción.
+AS < nombre> (opcional): Utilizado en Dockerfiles multi-etapa (multi-stage builds) para asignar un nombre a esta etapa de construcción.
 
 Ejemplos comunes de FROM
 ~~~~~~~~
@@ -253,21 +253,20 @@ ENV PORT=3000
 
 * Propósito: Establece el directorio de trabajo para las instrucciones posteriores.
 
-Frecuencia de cambio: Rara vez cambia una vez definido para el proyecto.
+* Frecuencia de cambio: Rara vez cambia una vez definido para el proyecto.
 
-Ubicación: Después de definir variables, antes de copiar archivos de la aplicación.
+* Ubicación: Después de definir variables, antes de copiar archivos de la aplicación.
 
 Ejemplo:
-
-Dockerfile
-
+~~~~~~~~
 WORKDIR /app
-COPY / ADD (Archivos de Dependencias de la Aplicación)
-Propósito: Copia solo los archivos necesarios para instalar las dependencias (ej., package.json, requirements.txt).
+~~~~~~~~
+{: .language-ruby}
 
-Frecuencia de cambio: Los archivos de dependencias suelen cambiar con menos frecuencia que el código fuente completo.
-
-Ubicación: Antes de la instrucción de instalación de dependencias. Esto es clave para el caching. Si solo cambian los archivos de código fuente, Docker puede reutilizar la capa de instalación de dependencias.
+### COPY / ADD (Archivos de Dependencias de la Aplicación)
+* Propósito: Copia solo los archivos necesarios para instalar las dependencias (ej., package.json, requirements.txt).
+* Frecuencia de cambio: Los archivos de dependencias suelen cambiar con menos frecuencia que el código fuente completo.
+* Ubicación: Antes de la instrucción de instalación de dependencias. Esto es clave para el caching. Si solo cambian los archivos de código fuente, Docker puede reutilizar la capa de instalación de dependencias.
 
 Ejemplo (para Node.js):
 
