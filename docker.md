@@ -223,13 +223,10 @@ Aunque no hay un orden "obligatorio" estricto para todos los comandos (más all�
 Aquí te presento un orden lógico y optimizado:
 
 ### FROM
-Propósito: Especifica la imagen base.
-
-Frecuencia de cambio: Rara vez cambia.
-
-Ubicación: Siempre es la primera instrucción no comentada.
-
-Ejemplo:
+* Propósito: Especifica la imagen base.
+* Frecuencia de cambio: Rara vez cambia.
+* Ubicación: Siempre es la primera instrucción no comentada.
+* Ejemplo:
 
 ~~~~~~~~
 FROM node:18-alpine
@@ -238,11 +235,8 @@ FROM node:18-alpine
 
 ### ARG y ENV (Variables de Entorno y Argumentos de Construcción)
 * Propósito: Define variables que se pueden usar durante la construcción (ARG) o variables de entorno que estarán disponibles en el contenedor en tiempo de ejecución (ENV).
-
 * Frecuencia de cambio: Puede cambiar según configuraciones, pero idealmente se definen temprano.
-
 * Ubicación: Después de FROM.
-
 * Ejemplo:
 
 ~~~~~~~~
@@ -252,15 +246,10 @@ ENV PORT=3000
 {: .language-ruby}
 
 ### WORKDIR
-
-
 * Propósito: Establece el directorio de trabajo para las instrucciones posteriores.
-
 * Frecuencia de cambio: Rara vez cambia una vez definido para el proyecto.
-
 * Ubicación: Después de definir variables, antes de copiar archivos de la aplicación.
-
-Ejemplo:
+* Ejemplo:
 ~~~~~~~~
 WORKDIR /app
 ~~~~~~~~
@@ -270,13 +259,11 @@ WORKDIR /app
 * Propósito: Copia solo los archivos necesarios para instalar las dependencias (ej., package.json, requirements.txt).
 * Frecuencia de cambio: Los archivos de dependencias suelen cambiar con menos frecuencia que el código fuente completo.
 * Ubicación: Antes de la instrucción de instalación de dependencias. Esto es clave para el caching. Si solo cambian los archivos de código fuente, Docker puede reutilizar la capa de instalación de dependencias.
-
 * Ejemplo (para Node.js):
 ~~~~~~~~
 COPY package.json package-lock.json ./
 ~~~~~~~~
 {: .language-ruby}
-
 * Ejemplo (para Python):
 ~~~~~~~~
 COPY requirements.txt ./
@@ -302,41 +289,37 @@ RUN pip install -r requirements.txt
 * Propósito: Copia el resto del código fuente de tu aplicación.
 * Frecuencia de cambio: Cambia muy frecuentemente durante el desarrollo.
 * Ubicación: Después de que todas las dependencias estén instaladas y cacheables. Esto asegura que si solo cambia el código fuente, solo esta capa y las siguientes se reconstruirán, no las de dependencias.
-Ejemplo:
-
-Dockerfile
-
+* Ejemplo:
+~~~~~~~~
 COPY . .
-EXPOSE
-Propósito: Informa a Docker que el contenedor escuchará en los puertos de red especificados en tiempo de ejecución.
-
-Frecuencia de cambio: Rara vez cambia.
-
-Ubicación: Después de copiar el código, ya que es una configuración del contenedor.
-
-Ejemplo:
-
-Dockerfile
-
+~~~~~~~~
+{: .language-ruby}
+### EXPOSE
+* Propósito: Informa a Docker que el contenedor escuchará en los puertos de red especificados en tiempo de ejecución.
+* Frecuencia de cambio: Rara vez cambia.
+* Ubicación: Después de copiar el código, ya que es una configuración del contenedor.
+* Ejemplo:
+~~~~~~~~
 EXPOSE 3000
-CMD y/o ENTRYPOINT
-Propósito: Define el comando predeterminado o el punto de entrada ejecutable cuando se inicia el contenedor.
+~~~~~~~~
+{: .language-ruby}
 
-Frecuencia de cambio: Generalmente se define una vez.
-
-Ubicación: Al final del Dockerfile, ya que son las instrucciones finales de ejecución del contenedor.
-
-Ejemplo (CMD):
-
-Dockerfile
-
+### CMD y/o ENTRYPOINT
+* Propósito: Define el comando predeterminado o el punto de entrada ejecutable cuando se inicia el contenedor.
+* Frecuencia de cambio: Generalmente se define una vez.
+* Ubicación: Al final del Dockerfile, ya que son las instrucciones finales de ejecución del contenedor.
+* Ejemplo (CMD):
+~~~~~~~~
 CMD ["npm", "start"]
-Ejemplo (ENTRYPOINT con CMD):
-
-Dockerfile
-
+~~~~~~~~
+{: .language-ruby}
+* Ejemplo (ENTRYPOINT con CMD):
+~~~~~~~~
 ENTRYPOINT ["/usr/bin/python3"]
 CMD ["app.py"]
+~~~~~~~~
+{: .language-ruby}
+
 Ejemplo Completo de un Dockerfile Optimizado:
 Dockerfile
  1. Imagen base
