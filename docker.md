@@ -110,6 +110,46 @@ Especifica la imagen base sobre la cual se construirá la nueva imagen. Es el pu
  ~~~~~~~~
  {: .language-ruby}
 
+FROM le dice a Docker dónde encontrar el punto de partida para tu nueva imagen. Docker tomará la imagen especificada del Docker Hub (o de un registro privado configurado) y la usará como la capa inicial sobre la cual se añadirán las capas de tu Dockerfile.
+
+Sintaxis:
+
+ ~~~~~~~~
+FROM <imagen> [AS <nombre>]
+ ~~~~~~~~
+{: .language-ruby}
+o
+ ~~~~~~~~
+FROM <imagen>:<etiqueta> [AS <nombre>]
+ ~~~~~~~~
+ {: .language-ruby}
+o
+
+ ~~~~~~~~
+FROM <imagen>@<digest> [AS <nombre>]
+ ~~~~~~~~
+ {: .language-ruby}
+
+<imagen>: El nombre de la imagen base (ej. ubuntu, node, python).
+
+:<etiqueta> (opcional): La versión o "tag" específica de la imagen que quieres usar (ej. ubuntu:22.04, node:18-alpine). Si no se especifica, Docker usará por defecto la etiqueta latest. Es una buena práctica especificar una etiqueta para asegurar builds consistentes.
+
+@<digest> (opcional): Un digest SHA256 de la imagen. Esto asegura una reproducibilidad absoluta, ya que el digest identifica de forma única el contenido de la imagen.
+
+AS <nombre> (opcional): Utilizado en Dockerfiles multi-etapa (multi-stage builds) para asignar un nombre a esta etapa de construcción.
+
+Ejemplos comunes de FROM
+~~~~~~~~
+FROM ubuntu:latest: Construye una imagen sobre la última versión de Ubuntu.
+
+FROM node:18-alpine: Utiliza una imagen Node.js versión 18 basada en Alpine Linux, que es más ligera.
+
+FROM python:3.9-slim-buster: Una imagen de Python 3.9 más ligera basada en Debian Buster.
+
+FROM scratch: Una imagen base completamente vacía. Se usa para crear imágenes mínimas "desde cero", como las que contienen solo un binario compilado estáticamente. Es el Dockerfile más pequeño posible.
+ ~~~~~~~~
+ {: .language-ruby}
+ 
 #### RUN
 Ejecuta comandos dentro de la imagen durante el proceso de construcción. Se usa comúnmente para instalar paquetes, crear directorios, etc. Ejemplo: 
 ~~~~~~~~
@@ -133,7 +173,7 @@ El comando WORKDIR en un Dockerfile se usa para establecer el directorio de trab
 ##### ¿Cómo funciona WORKDIR?
 Cuando especificas WORKDIR /app, todas las instrucciones que sigan a esa línea se ejecutarán dentro del directorio /app del contenedor, a menos que se especifique una ruta absoluta diferente. Si el directorio especificado no existe, Docker lo creará automáticamente.
 
-*** Ejemplo ***:
+***Ejemplo***:
 Sin WORKDIR:
 
 ~~~~~~~~
