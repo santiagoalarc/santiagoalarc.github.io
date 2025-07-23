@@ -75,6 +75,7 @@ Una imagen es una plantilla de solo lectura con instrucciones para crear un cont
 
 Puedes crear tus propias imágenes o usar las creadas por otros y publicadas en un registro. Para construir tu propia imagen, creas un archivo `Dockerfile` con una sintaxis simple para definir los pasos necesarios para crear y ejecutar la imagen. Cada instrucción en un `Dockerfile` crea una capa en la imagen. Cuando modificas el `Dockerfile` y reconstruyes la imagen, solo se reconstruyen las capas que han cambiado. Esto es parte de lo que hace que las imágenes sean ligeras, pequeñas y rápidas, en comparación con otras tecnologías de virtualización.
 
+
 ### Contenedores
 
 Un contenedor es una instancia ejecutable de una imagen. Puedes crear, iniciar, detener, mover o eliminar un contenedor usando la API de Docker o la CLI. Puedes conectar un contenedor a una o más redes, adjuntarle almacenamiento o incluso crear una nueva imagen basada en su estado actual.
@@ -82,6 +83,8 @@ Un contenedor es una instancia ejecutable de una imagen. Puedes crear, iniciar, 
 De forma predeterminada, un contenedor está relativamente bien aislado de otros contenedores y de la máquina host. Puedes controlar el nivel de aislamiento de la red, el almacenamiento u otros subsistemas del contenedor respecto a otros contenedores o a la máquina host.
 
 Un contenedor está definido por su imagen, así como por las opciones de configuración que le proporciones al crearlo o iniciarlo. Cuando se elimina un contenedor, cualquier cambio en su estado que no esté almacenado en un almacenamiento persistente desaparece.
+
+También se puede considerar  un contenedor como una capa adicional de ejecución que inicia todo lo que está definido en la imagen. (Instancia en ejecución de una imagen)
 
 ### Ejemplo de comando `docker run`
 
@@ -336,28 +339,27 @@ ENTRYPOINT ["/usr/bin/python3"]
 CMD ["app.py"]
 Ejemplo Completo de un Dockerfile Optimizado:
 Dockerfile
-
-# 1. Imagen base
+ 1. Imagen base
 FROM node:18-alpine
 
-# 2. Variables de entorno (si aplica)
+ 2. Variables de entorno (si aplica)
 ENV NODE_ENV=production
 
-# 3. Directorio de trabajo
+ 3. Directorio de trabajo
 WORKDIR /app
 
-# 4. Copiar archivos de dependencias (para aprovechar el caching)
+ 4. Copiar archivos de dependencias (para aprovechar el caching)
 COPY package.json package-lock.json ./
 
-# 5. Instalar dependencias
+ 5. Instalar dependencias
 RUN npm install --production
 
-# 6. Copiar el resto del código de la aplicación
+ 6. Copiar el resto del código de la aplicación
 COPY . .
 
-# 7. Exponer puerto
+ 7. Exponer puerto
 EXPOSE 3000
 
-# 8. Comando para iniciar la aplicación
+ 8. Comando para iniciar la aplicación
 CMD ["npm", "start"]
 Seguir este orden te ayudará a construir imágenes Docker de manera más rápida y eficiente, aprovechando al máximo el sistema de caching de Docker.
