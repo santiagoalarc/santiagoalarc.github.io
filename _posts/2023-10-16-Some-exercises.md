@@ -9,6 +9,7 @@ title: You're up and running!
 [Diferencias entre IaaS, PaaS, SaaS y MaaS]({{ site.baseurl }}/diferences-as/)  
 [Ejercicios programación]({{ site.baseurl }}/programming-exercises/)   
 [Docker]({{ site.baseurl  }}/docker/)  
+[Docker-exercise]( {{ site.baseurl  }} /docker-exercise/)
 [Sobre el curso]({{ site.baseurl }}/about/)  
 
 ---
