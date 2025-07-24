@@ -346,3 +346,8 @@ EXPOSE 3000
  8. Comando para iniciar la aplicación
 CMD ["npm", "start"]
 Seguir este orden te ayudará a construir imágenes Docker de manera más rápida y eficiente, aprovechando al máximo el sistema de caching de Docker.
+
+### ¿Qué es una "Dangling Image" en Docker?
+En Docker, una "dangling image" (imagen colgante o huérfana) es una imagen que ya no está asociada a ningún nombre de repositorio y etiqueta (<none>:<none>), pero que sigue ocupando espacio en tu disco. Piensa en ella como una versión anterior de una imagen que creaste, pero que ha sido reemplazada por una versión más nueva con el mismo nombre y etiqueta.
+
+
