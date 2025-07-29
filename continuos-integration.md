@@ -4,7 +4,58 @@ title: Integración continua
 permalink: /continuos-integration/
 ---
 
-## Hacer que la Construcción sea Auto-Verificable
+---
+
+## Prácticas de Integración Continua
+
+La historia anterior es una ilustración de la Integración Continua que, con suerte, te da una idea de cómo es trabajar con ella para un programador común. Pero, como con cualquier cosa, hay bastantes aspectos que resolver al implementarla en el trabajo diario. Así que ahora revisaremos las **prácticas clave** que necesitamos llevar a cabo.
+
+---
+
+### Poner todo en una línea principal con control de versiones
+
+Hoy en día, casi todos los equipos de software mantienen su código fuente en un **sistema de control de versiones**, de modo que cada desarrollador puede encontrar fácilmente no solo el estado actual del producto, sino también todos los cambios que se le han hecho. Las herramientas de control de versiones permiten que un sistema se **revierta a cualquier punto** de su desarrollo, lo que puede ser muy útil para comprender la historia del sistema, utilizando la **depuración diferencial ("Diff Debugging")** para encontrar errores. Mientras escribo esto, el sistema de control de versiones dominante es **Git**.
+
+Pero si bien el control de versiones es común, algunos equipos no aprovechan al máximo el control de versiones. Mi prueba para un control de versiones completo es que debería poder llegar con un entorno mínimamente configurado (por ejemplo, una computadora portátil con solo el sistema operativo estándar instalado) y ser capaz de **construir y ejecutar el producto fácilmente después de clonar el repositorio**. Esto significa que el repositorio debe devolver de manera confiable el código fuente del producto, las pruebas, el esquema de la base de datos, los datos de prueba, los archivos de configuración, las configuraciones del IDE, los scripts de instalación, las bibliotecas de terceros y cualquier herramienta necesaria para construir el software.
+
+Es posible que notes que dije que el repositorio debe **"devolver"** todos estos elementos, lo que no es lo mismo que "almacenarlos". No tenemos que almacenar el compilador en el repositorio, pero necesitamos poder obtener el compilador correcto. Si extraigo las fuentes del producto del año pasado, es posible que deba poder construirlas con el compilador que usaba el año pasado, no la versión que estoy usando ahora. El repositorio puede hacer esto almacenando un **enlace a un almacenamiento de activos inmutable**, inmutable en el sentido de que una vez que un activo se almacena con una ID, siempre obtendré exactamente ese mismo activo de vuelta. También puedo hacer esto con el código de la biblioteca, siempre que confíe en el almacenamiento de activos y siempre haga referencia a una versión particular, nunca a "la última versión".
+
+Se pueden utilizar esquemas de almacenamiento de activos similares para cualquier cosa que sea demasiado grande, como videos. Clonar un repositorio a menudo significa tomarlo todo, incluso si no es necesario. Al usar referencias a un almacén de activos, los scripts de construcción pueden elegir descargar solo lo que se necesita para una construcción particular.
+
+En general, debemos **almacenar en el control de código fuente todo lo que necesitamos para construir cualquier cosa, pero nada de lo que realmente construimos**. Algunas personas sí mantienen los productos de construcción en el control de código fuente, pero considero que eso es una **"mala práctica" ("smell")**, un indicio de un problema más profundo, generalmente la incapacidad de recrear construcciones de manera confiable. Puede ser útil almacenar en caché los productos de construcción, pero siempre deben tratarse como desechables, y generalmente es bueno asegurarse de que se eliminen rápidamente para que la gente no dependa de ellos cuando no deberían.
+
+Un segundo elemento de este principio es que debe ser fácil **encontrar el código para una pieza de trabajo determinada**. Parte de esto son los **nombres claros y los esquemas de URL**, tanto dentro del repositorio como dentro de la empresa en general. También significa no tener que pasar tiempo averiguando qué rama dentro del sistema de control de versiones usar. La Integración Continua se basa en tener una **línea principal clara ("mainline")**, una única rama compartida que actúa como el estado actual del producto. Esta es la próxima versión que se desplegará en producción.
+
+Los equipos que usan Git en su mayoría usan el nombre **"main"** para la rama principal, pero también a veces vemos "trunk" o el antiguo predeterminado "master". La línea principal es esa rama en el repositorio central, así que para agregar un "commit" a una línea principal llamada `main` necesito primero hacer un "commit" a mi copia local de `main` y luego enviar ese "commit" al servidor central. La rama de seguimiento (llamada algo así como `origin/main`) es una copia de la línea principal en mi máquina local. Sin embargo, puede estar desactualizada, ya que en un entorno de Integración Continua se envían muchos "commits" a la línea principal todos los días.
+
+En la medida de lo posible, debemos utilizar **archivos de texto para definir el producto y su entorno**. Digo esto porque, aunque los sistemas de control de versiones pueden almacenar y rastrear archivos que no son de texto, generalmente no proporcionan ninguna facilidad para ver fácilmente la diferencia entre versiones. Esto hace que sea mucho más difícil entender qué cambio se realizó. Es posible que en el futuro veamos más formatos de almacenamiento que tengan la facilidad de crear diferencias significativas, pero por el momento las diferencias claras están casi completamente reservadas para los formatos de texto. Incluso ahí necesitamos usar formatos de texto que produzcan diferencias comprensibles.
+
+---
+
+## Automatizar la Construcción
+
+Convertir el código fuente en un sistema en funcionamiento a menudo puede ser un proceso complicado que involucra compilación, mover archivos, cargar esquemas en bases de datos, etc. Sin embargo, como la mayoría de las tareas en esta parte del desarrollo de software, se puede automatizar, y como resultado, **debe automatizarse**. Pedir a la gente que escriba comandos extraños o haga clic en cuadros de diálogo es una pérdida de tiempo y un caldo de cultivo para errores.
+
+La mayoría de los entornos de programación modernos incluyen herramientas para **automatizar construcciones**, y dichas herramientas han existido durante mucho tiempo. Las encontré por primera vez con `make`, una de las primeras herramientas de Unix.
+
+Cualquier instrucción para la construcción debe **almacenarse en el repositorio**; en la práctica, esto significa que debemos usar **representaciones de texto**. De esa manera, podemos inspeccionarlas fácilmente para ver cómo funcionan y, lo que es crucial, ver las **diferencias ("diffs")** cuando cambian. Por lo tanto, los equipos que utilizan Integración Continua evitan las herramientas que requieren hacer clic en interfaces de usuario para realizar una construcción o configurar un entorno.
+
+Es posible usar un lenguaje de programación regular para automatizar construcciones; de hecho, las construcciones simples a menudo se capturan como scripts de shell. Pero a medida que las construcciones se complican, es mejor usar una herramienta diseñada pensando en la automatización de la construcción. En parte, esto se debe a que dichas herramientas tendrán funciones incorporadas para tareas de construcción comunes. Pero la razón principal es que las herramientas de construcción funcionan mejor con una forma particular de organizar su lógica: un **modelo computacional alternativo** al que me refiero como **Red de Dependencias**. Una red de dependencias organiza su lógica en tareas que se estructuran como un **grafo de dependencias**.
+
+Una red de dependencias trivialmente simple podría decir que la tarea "test" depende de la tarea "compile". Si invoco la tarea "test", esta buscará si la tarea "compile" necesita ejecutarse y, si es así, la invocará primero. Si la propia tarea "compile" tiene dependencias, la red buscará si necesita invocarlas primero, y así sucesivamente, hacia atrás a lo largo de la cadena de dependencias. Una red de dependencias como esta es útil para los scripts de construcción porque a menudo las tareas llevan mucho tiempo, que se desperdicia si no son necesarias. Si nadie ha cambiado ningún archivo fuente desde la última vez que ejecuté las pruebas, entonces puedo evitar una compilación potencialmente larga.
+
+Para saber si una tarea necesita ejecutarse, la forma más común y sencilla es mirar los **tiempos de modificación de los archivos**. Si alguno de los archivos de entrada a la compilación ha sido modificado más tarde que la salida, entonces sabemos que la compilación debe ejecutarse si se invoca esa tarea.
+
+Un error común es **no incluir todo en la construcción automatizada**. La construcción debe incluir la obtención del **esquema de la base de datos del repositorio** y su puesta en marcha en el entorno de ejecución. Elaboraré mi regla general anterior: cualquiera debería poder traer una máquina limpia, extraer las fuentes del repositorio, emitir un solo comando y tener un sistema en funcionamiento en su propio entorno.
+
+Si bien un programa simple puede necesitar solo una o dos líneas de archivo de script para construirse, los sistemas complejos a menudo tienen un **gran grafo de dependencias**, finamente ajustado para minimizar la cantidad de tiempo requerido para construir las cosas. Este sitio web, por ejemplo, tiene más de mil páginas web. Mi sistema de construcción sabe que si altero el código fuente de esta página, solo tengo que construir esta página. Pero si altero un archivo central en la cadena de herramientas de publicación, entonces necesita reconstruirlos todos. De cualquier manera, invoco el mismo comando en mi editor, y el sistema de construcción determina cuánto hacer.
+
+Dependiendo de lo que necesitemos, podemos necesitar que se construyan diferentes tipos de cosas. Podemos construir un sistema **con o sin código de prueba**, o con diferentes conjuntos de pruebas. Algunos componentes se pueden construir de forma independiente. Un script de construcción debería permitirnos construir **objetivos alternativos** para diferentes casos.
+
+---
+¿Hay algo más en el artículo que te gustaría traducir o discutir?
+
+### Hacer que la Construcción sea Auto-Verificable
 Tradicionalmente, una construcción significaba compilar, enlazar y todo lo demás necesario para que un programa se ejecutara. Un programa puede ejecutarse, pero eso no significa que haga lo correcto. Los lenguajes modernos de tipado estático pueden detectar muchos errores, pero muchos más se escapan de esa red. Esto es un problema crítico si queremos integrar con la frecuencia que exige la Integración Continua. Si los errores llegan al producto, nos enfrentamos a la abrumadora tarea de corregirlos en una base de código que cambia rápidamente. La prueba manual es demasiado lenta para hacer frente a la frecuencia de los cambios.
 
 Frente a esto, necesitamos asegurarnos de que los errores no lleguen al producto en primer lugar. La técnica principal para lograrlo es una suite de pruebas exhaustiva, que se ejecuta antes de cada integración para eliminar tantos errores como sea posible. Las pruebas no son perfectas, por supuesto, pero pueden detectar muchos errores, los suficientes para ser útiles. Las primeras computadoras que usé realizaban una auto-verificación de memoria visible al arrancar, lo que me llevó a referirme a esto como Código Auto-Verificable.
