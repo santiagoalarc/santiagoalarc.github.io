@@ -24,7 +24,8 @@ Las pruebas actúan como una verificación automatizada de la salud de la base d
 Por supuesto, no podemos contar con las pruebas para encontrarlo todo. Como se ha dicho a menudo: las pruebas no demuestran la ausencia de errores. Sin embargo, la perfección no es el único punto en el que obtenemos un beneficio de una construcción auto-verificable. Las pruebas imperfectas, ejecutadas con frecuencia, son mucho mejores que las pruebas perfectas que nunca se escriben.
 
 
-## Todo el mundo envía "commits" a la línea principal cada día
+### Todo el mundo envía "commits" a la línea principal cada día
+
 La integración es, ante todo, comunicación. La integración permite a los desarrolladores informar a otros desarrolladores sobre los cambios que han realizado. La comunicación frecuente permite a las personas conocer rápidamente cómo evolucionan los cambios.
 
 El único requisito previo para que un desarrollador haga un "commit" a la línea principal es que pueda construir correctamente su código. Esto, por supuesto, incluye pasar las pruebas de construcción. Como en cualquier ciclo de "commit", el desarrollador primero actualiza su copia de trabajo para que coincida con la línea principal, resuelve cualquier conflicto con esta, y luego construye en su máquina local. Si la construcción pasa, entonces puede subir sus cambios a la línea principal.
@@ -39,7 +40,8 @@ Mi regla general es que cada desarrollador debería hacer un "commit" a la líne
 
 Los "commits" frecuentes animan a los desarrolladores a dividir su trabajo en pequeños fragmentos de unas pocas horas cada uno. Esto ayuda a seguir el progreso y proporciona una sensación de avance. A menudo, al principio la gente siente que no puede hacer algo significativo en solo unas pocas horas, pero hemos descubierto que la tutoría y la práctica nos ayudan a aprender.
 
-## Cada envío a la línea principal debe activar una construcción
+### Cada envío a la línea principal debe activar una construcción
+
 Si todos los miembros del equipo integran al menos diariamente, esto debería significar que la línea principal se mantiene en un estado saludable. Sin embargo, en la práctica, las cosas aún pueden salir mal. Esto puede deberse a fallos en la disciplina, a no actualizar y construir antes de un envío, o a diferencias en el entorno entre los espacios de trabajo de los desarrolladores.
 
 Por lo tanto, necesitamos asegurar que cada "commit" sea verificado en un entorno de referencia. La forma habitual de hacer esto es con un Servicio de Integración Continua (Servicio de CI) que monitorea la línea principal. (Ejemplos de Servicios de CI son herramientas como Jenkins, GitHub Actions, Circle CI, etc.). Cada vez que la línea principal recibe un "commit", el servicio de CI extrae el encabezado de la línea principal a un entorno de integración y realiza una construcción completa. Solo una vez que esta construcción de integración esté en verde, el desarrollador puede considerar que la integración está completa. Al asegurar que tenemos una construcción con cada envío, si obtenemos una falla, sabemos que el error se encuentra en ese último envío, lo que reduce el lugar donde tenemos que buscar para corregirlo.
@@ -50,7 +52,7 @@ Aunque casi todos los equipos utilizan Servicios de CI hoy en día, es perfectam
 
 (Este es un buen punto para mencionar que mis colegas en Thoughtworks han contribuido mucho con herramientas de código abierto para la Integración Continua, en particular Cruise Control, el primer Servicio de CI.)
 
-## Solucionar las construcciones fallidas de inmediato
+### Solucionar las construcciones fallidas de inmediato
 
 La Integración Continua solo puede funcionar si la línea principal se mantiene en un estado saludable. Si la construcción de integración falla, debe solucionarse de inmediato. Como dice Kent Beck: "nadie tiene una tarea de mayor prioridad que arreglar la construcción". Esto no significa que todos en el equipo tengan que dejar lo que están haciendo para arreglar la construcción; por lo general, solo se necesitan un par de personas para que las cosas vuelvan a funcionar. Sí significa una priorización consciente de una corrección de construcción como una tarea urgente y de alta prioridad.
 
@@ -58,7 +60,8 @@ Normalmente, la mejor manera de arreglar la construcción es revertir el último
 
 Algunos equipos prefieren eliminar todo riesgo de romper la línea principal utilizando una "Pending Head" (también llamada "Pre-tested", "Delayed" o "Gated Commit"). Para ello, el servicio de CI necesita configurar las cosas para que los "commits" enviados a la línea principal para la integración no pasen inmediatamente a la línea principal. En su lugar, se colocan en otra rama hasta que la construcción se completa y solo se migran a la línea principal después de una construcción en verde. Si bien esta técnica evita cualquier peligro de ruptura de la línea principal, un equipo efectivo rara vez debería ver una línea principal en rojo, y las pocas veces que sucede, su misma visibilidad anima a la gente a aprender cómo evitarlo.
 
-## Mantener la construcción rápida
+### Mantener la construcción rápida
+
 Todo el objetivo de la Integración Continua es proporcionar retroalimentación rápida. Nada agota más la esencia de la Integración Continua que una construcción que lleva mucho tiempo. Aquí debo admitir cierta diversión de viejo gruñón ante lo que se considera una construcción larga. La mayoría de mis colegas consideran que una construcción que lleva una hora es totalmente irrazonable. Recuerdo equipos soñando con lograr esa velocidad, y ocasionalmente todavía nos encontramos con casos en los que es muy difícil lograr que las construcciones alcancen esa velocidad.
 
 Para la mayoría de los proyectos, sin embargo, la guía de XP de una construcción de diez minutos es perfectamente razonable. La mayoría de nuestros proyectos modernos lo logran. Vale la pena hacer un esfuerzo concentrado para que esto suceda, porque cada minuto recortado del tiempo de construcción es un minuto ahorrado para cada desarrollador cada vez que hacen un "commit". Dado que la Integración Continua exige "commits" frecuentes, esto se suma a una gran cantidad de tiempo.
@@ -81,7 +84,7 @@ Mientras consideramos el proceso de construcción más amplio, vale la pena menc
 
 ---
 
-## Ocultar el trabajo en curso
+### Ocultar el trabajo en curso
 
 La Integración Continua significa integrar tan pronto como haya un pequeño progreso y la construcción sea saludable. Frecuentemente, esto sugiere integrar antes de que una característica visible para el usuario esté completamente formada y lista para su lanzamiento. Por lo tanto, necesitamos considerar cómo manejar el **código latente**: código que forma parte de una característica sin terminar pero que está presente en una versión en vivo.
 
@@ -98,7 +101,7 @@ La **Ramificación por Abstracción ("Branch By Abstraction")** es otra técnica
 Al introducir una nueva característica, siempre debemos asegurarnos de que podemos **revertir** en caso de problemas. El **Cambio Paralelo ("Parallel Change", también conocido como "expandir-contraer")** divide un cambio en pasos reversibles. Por ejemplo, si renombramos un campo de la base de datos, primero creamos un nuevo campo con el nuevo nombre, luego escribimos en los campos antiguo y nuevo, luego copiamos datos de los campos antiguos existentes, luego leemos del nuevo campo y solo entonces eliminamos el campo antiguo. Podemos revertir cualquiera de estos pasos, lo que no sería posible si hiciéramos un cambio así de una sola vez. Los equipos que utilizan Integración Continua a menudo buscan dividir los cambios de esta manera, manteniéndolos pequeños y fáciles de deshacer.
 
 
-## Probar en un clon del entorno de producción
+### Probar en un clon del entorno de producción
 
 El objetivo de las pruebas es detectar, bajo condiciones controladas, cualquier problema que el sistema pueda tener en producción. Una parte significativa de esto es el **entorno** en el cual se ejecutará el sistema de producción. Si probamos en un entorno diferente, cada diferencia resulta en un riesgo de que lo que sucede en las pruebas no suceda en producción.
 
@@ -112,7 +115,7 @@ Un punto a tener en cuenta es cuando el entorno de producción no es tan bueno c
 
 ---
 
-## Todo el mundo puede ver lo que está pasando
+### Todo el mundo puede ver lo que está pasando
 
 La Integración Continua se trata de **comunicación**, por lo que queremos asegurarnos de que todos puedan ver fácilmente el estado del sistema y los cambios que se le han realizado.
 
@@ -123,5 +126,153 @@ Los equipos que comparten un espacio físico a menudo tienen algún tipo de **pa
 Una de las pantallas físicas más antiguas que me gustaba bastante era el uso de **lámparas de lava rojas y verdes**. Una de las características de una lámpara de lava es que, después de estar encendidas un tiempo, comienzan a burbujear. La idea era que si la lámpara roja se encendía, el equipo debía arreglar la construcción antes de que comenzara a burbujear. Las pantallas físicas para el estado de la construcción a menudo se volvían lúdicas, añadiendo una personalidad peculiar al espacio de trabajo de un equipo. Tengo gratos recuerdos de un conejo bailarín.
 
 Además del estado actual de la construcción, estas pantallas pueden mostrar información útil sobre el **historial reciente**, lo que puede ser un indicador de la salud del proyecto. A principios de siglo trabajé con un equipo que tenía un historial de no poder crear construcciones estables. Pusimos un calendario en la pared que mostraba un año completo con un pequeño cuadrado para cada día. Cada día, el grupo de QA ponía una pegatina verde en el día si habían recibido una construcción estable que pasaba las pruebas de "commit", de lo contrario, un cuadrado rojo. Con el tiempo, el calendario reveló el estado del proceso de construcción, mostrando una mejora constante hasta que los cuadrados verdes fueron tan comunes que el calendario desapareció, cumpliendo su propósito.
+
+---
+
+### Automatizar el despliegue
+
+Para hacer Integración Continua necesitamos **múltiples entornos**: uno para ejecutar las pruebas de "commit", probablemente más para ejecutar otras partes del pipeline de despliegue. Dado que estamos moviendo ejecutables entre estos entornos varias veces al día, querremos hacerlo automáticamente. Así que es importante tener **scripts que nos permitan desplegar la aplicación en cualquier entorno fácilmente**.
+
+Con las herramientas modernas de virtualización, contenerización y "serverless" podemos ir más allá. No solo tener scripts para desplegar el producto, sino también **scripts para construir el entorno requerido desde cero**. De esta manera, podemos empezar con un entorno básico disponible en el mercado, crear el entorno que necesitamos para que el producto funcione, instalar el producto y ejecutarlo, todo de forma completamente automática. Si estamos usando **banderas de características** para ocultar el trabajo en curso, entonces estos entornos se pueden configurar con todas las banderas de características activadas, para que estas características puedan ser probadas con todas las interacciones inminentes.
+
+Una consecuencia natural de esto es que estos mismos scripts nos permiten **desplegar en producción con una facilidad similar**. Muchos equipos despliegan código nuevo en producción varias veces al día utilizando estas automatizaciones, pero incluso si elegimos una cadencia menos frecuente, el despliegue automático ayuda a acelerar el proceso y reduce los errores. También es una opción económica, ya que utiliza las mismas capacidades que usamos para desplegar en entornos de prueba.
+
+Si desplegamos en producción automáticamente, una capacidad adicional que encontramos útil es la **reversión automatizada**. Las cosas malas suceden de vez en cuando, y si las sustancias marrones y malolientes golpean el metal giratorio, es bueno poder volver rápidamente al último estado bueno conocido. Ser capaz de revertir automáticamente también reduce gran parte de la tensión del despliegue, animando a la gente a desplegar con más frecuencia y así hacer llegar nuevas características a los usuarios rápidamente. El **Despliegue Azul/Verde ("Blue Green Deployment")** nos permite tanto poner en vivo nuevas versiones rápidamente como revertir con la misma rapidez si es necesario, cambiando el tráfico entre las versiones desplegadas.
+
+El Despliegue Automatizado facilita la configuración de **Lanzamientos Canary ("Canary Releases")**, desplegando una nueva versión de un producto a un subconjunto de nuestros usuarios para detectar problemas antes de lanzarlo a toda la población.
+
+Las aplicaciones móviles son buenos ejemplos donde es esencial automatizar el despliegue en entornos de prueba, en este caso en dispositivos, para que una nueva versión pueda explorarse antes de invocar a los guardianes de la App Store. De hecho, cualquier software ligado a un dispositivo necesita formas de obtener fácilmente nuevas versiones en los dispositivos de prueba.
+
+Al desplegar software como este, recuerde asegurarse de que la **información de la versión sea visible**. Una pantalla de "acerca de" debe contener un ID de construcción que se vincule al control de versiones, los registros deben facilitar la visualización de qué versión del software se está ejecutando, debe haber algún punto final de API que proporcione información de la versión.
+
+---
+
+### Estilos de Integración
+
+Hasta ahora, he descrito una forma de abordar la integración, pero si no es universal, entonces debe haber otras formas. Como con cualquier cosa, cualquier clasificación que dé tiene límites difusos, pero encuentro útil pensar en **tres estilos de manejo de la integración**: Integración Pre-Lanzamiento, Ramas de Características e Integración Continua.
+
+El más antiguo es el que vi en ese almacén en los años 80: la **Integración Pre-Lanzamiento**. Esta ve la integración como una fase de un proyecto de software, una noción que es una parte natural de un **Proceso en Cascada ("Waterfall Process")**. En un proyecto así, el trabajo se divide en unidades, que pueden ser realizadas por individuos o pequeños equipos. Cada unidad es una parte del software, con una interacción mínima con otras unidades. Estas unidades se construyen y prueban por sí mismas (el uso original del término "prueba unitaria"). Luego, una vez que las unidades están listas, las integramos en el producto final. Esta integración ocurre una vez, y es seguida por pruebas de integración y luego un lanzamiento. Así, si pensamos en el trabajo, vemos dos fases: una donde todos trabajan en paralelo en características, seguida de un único flujo de esfuerzo en la integración.
+
+![Trabajo en funcionalidades](/images/work-on-features.png "Trabajo en funcionalidades")
+
+La frecuencia de integración en este estilo está ligada a la **frecuencia de lanzamiento**, generalmente versiones principales del software, usualmente medidas en meses o años. Estos equipos usarán un proceso diferente para las correcciones de errores urgentes, de modo que puedan lanzarse por separado al cronograma de integración regular.
+
+Uno de los enfoques más populares para la integración en la actualidad es el uso de **Ramas de Características ("Feature Branches")**. En este estilo, las características se asignan a individuos o pequeños equipos, muy similar a las unidades en el enfoque anterior. Sin embargo, en lugar de esperar hasta que todas las unidades estén terminadas antes de integrar, los desarrolladores integran su característica en la línea principal tan pronto como está lista. Algunos equipos lanzarán a producción después de cada integración de características, otros prefieren agrupar algunas características para el lanzamiento.
+
+Los equipos que utilizan ramas de características generalmente esperarán que todos obtengan ("pull") de la línea principal regularmente, pero esto es **semi-integración**. Si Rebeca y yo estamos trabajando en características separadas, podríamos obtener de la línea principal todos los días, pero no vemos los cambios del otro hasta que uno de nosotros complete nuestra característica e integre, enviándola a la línea principal. Entonces el otro verá ese código en su siguiente "pull", integrándolo en su copia de trabajo. Así, después de que cada característica es enviada a la línea principal, cada otro desarrollador hará un trabajo de integración para combinar este último envío de la línea principal con su propia rama de características.
+
+Esto es solo semi-integración porque cada desarrollador combina los cambios en la línea principal con su propia rama local. La integración completa no puede ocurrir hasta que un desarrollador envíe sus cambios, lo que provoca otra ronda de semi-integraciones. Incluso si Rebeca y yo obtenemos los mismos cambios de la línea principal, solo nos hemos integrado con esos cambios, no con las ramas del otro.
+
+Con la **Integración Continua**, cada día todos estamos enviando nuestros cambios a la línea principal y obteniendo los cambios de todos los demás en nuestro propio trabajo. Esto lleva a muchos más episodios de trabajo de integración, pero **cada episodio es mucho más pequeño**. Es mucho más fácil combinar unas pocas horas de trabajo en una base de código que combinar varios días.
+
+---
+
+## Beneficios de la Integración Continua
+
+Al discutir los méritos relativos de los tres estilos de integración, la mayor parte de la discusión trata verdaderamente sobre la **frecuencia de la integración**. Tanto la Integración Pre-Lanzamiento como la Ramificación de Características pueden operar a diferentes frecuencias y es posible cambiar la frecuencia de integración sin cambiar el estilo de integración. Si estamos usando la Integración Pre-Lanzamiento, hay una gran diferencia entre lanzamientos mensuales y lanzamientos anuales. La Ramificación de Características generalmente funciona con una frecuencia más alta, porque la integración ocurre cuando cada característica se envía individualmente a la línea principal, a diferencia de esperar a agrupar un montón de unidades. Si un equipo está haciendo Ramificación de Características y todas sus características requieren menos de un día de trabajo para construir, entonces son efectivamente lo mismo que la Integración Continua. Pero la Integración Continua es diferente en que se define como un **estilo de alta frecuencia**. La Integración Continua se empeña en establecer la frecuencia de integración como un objetivo en sí mismo, y no la vincula a la finalización de características o a la frecuencia de lanzamiento.
+
+De ello se deduce que la mayoría de los equipos pueden ver una mejora útil en los factores que discutiré a continuación al aumentar su frecuencia sin cambiar su estilo. Hay beneficios significativos al reducir el tamaño de las características de dos meses a dos semanas. La Integración Continua tiene la ventaja de establecer la **integración de alta frecuencia como la línea de base**, estableciendo hábitos y prácticas que la hacen sostenible.
+
+---
+
+Aquí tienes la traducción al español del texto, manteniendo el contexto de la Integración Continua:
+
+---
+
+### Reducción del riesgo de retrasos en la entrega
+
+Es muy difícil estimar cuánto tiempo lleva realizar una integración compleja. A veces puede ser un esfuerzo fusionar en Git, pero luego todo funciona bien. Otras veces puede ser una fusión rápida, pero un error de integración sutil tarda días en encontrarse y corregirse. Cuanto más largo sea el tiempo entre integraciones, más código habrá que integrar, más tiempo llevará, pero lo que es peor es el **aumento de la imprevisibilidad**.
+
+Todo esto convierte la **integración previa al lanzamiento** en una pesadilla particular. Debido a que la integración es uno de los últimos pasos antes del lanzamiento, el tiempo ya es escaso y la presión es alta. Tener una fase difícil de predecir al final del día significa que tenemos un **riesgo significativo muy difícil de mitigar**. Por eso mi recuerdo de los años 80 es tan fuerte, y no es la única vez que he visto proyectos atrapados en un **infierno de integración**, donde cada vez que arreglan un error de integración, aparecen dos más.
+
+Cualquier paso para **aumentar la frecuencia de integración reduce este riesgo**. Cuanta menos integración haya que hacer, menos tiempo desconocido habrá antes de que una nueva versión esté lista. La **Ramificación de Características ("Feature Branching")** ayuda al empujar este trabajo de integración a flujos de características individuales, de modo que, si se deja solo, un flujo puede enviarse a la línea principal tan pronto como la característica esté lista.
+
+Pero ese "si se deja solo" es importante. Si alguien más envía cambios a la línea principal, entonces introducimos algo de trabajo de integración antes de que la característica esté terminada. Debido a que las ramas están aisladas, un desarrollador que trabaja en una rama no tiene mucha visibilidad sobre qué otras características pueden enviarse y cuánto trabajo implicaría integrarlas. Si bien existe el peligro de que las características de alta prioridad puedan enfrentar retrasos en la integración, podemos gestionarlo evitando los envíos de características de menor prioridad.
+
+La **Integración Continua elimina eficazmente el riesgo de entrega**. Las integraciones son tan pequeñas que generalmente se realizan sin problemas. Una integración incómoda sería una que tarde más de unos pocos minutos en resolverse. El peor de los casos sería un conflicto que haga que alguien reinicie su trabajo desde cero, pero eso aún sería menos de un día de trabajo perdido, y por lo tanto no será algo que probablemente preocupe a una junta de accionistas. Además, estamos realizando la integración regularmente a medida que desarrollamos el software, por lo que podemos enfrentar problemas mientras tenemos más tiempo para lidiar con ellos y podemos practicar cómo resolverlos.
+
+Incluso si un equipo no está lanzando a producción regularmente, la Integración Continua es importante porque permite a todos **ver exactamente cuál es el estado del producto**. No hay esfuerzos de integración ocultos que deban hacerse antes del lanzamiento; cualquier esfuerzo en la integración ya está incorporado.
+
+---
+
+### Menos tiempo desperdiciado en la integración
+
+No he visto estudios serios que midan cómo el tiempo dedicado a la integración se relaciona con el tamaño de las integraciones, pero mi evidencia anecdótica sugiere fuertemente que la relación **no es lineal**. Si hay el doble de código para integrar, es más probable que lleve cuatro veces más tiempo realizar la integración. Es como cuando necesitamos tres líneas para conectar completamente tres nodos, pero seis líneas para conectar cuatro de ellos. La integración se trata de **conexiones**, de ahí el aumento no lineal, uno que se refleja en la experiencia de mis colegas.
+
+En organizaciones que utilizan **ramas de características**, gran parte de este tiempo perdido lo siente el individuo. Varias horas dedicadas a intentar hacer un "rebase" sobre un gran cambio en la línea principal son frustrantes. Unos días esperando una revisión de código en una solicitud de extracción terminada, durante la cual ocurre otro gran cambio en la línea principal, es aún más frustrante. Tener que dejar de lado el trabajo en una nueva característica para depurar un problema encontrado en una prueba de integración de una característica terminada hace dos semanas **mina la productividad**.
+
+Cuando hacemos Integración Continua, la integración es generalmente un **evento sin incidentes**. Bajo la línea principal, ejecuto la construcción y envío mis cambios. Si hay un conflicto, la pequeña cantidad de código que he escrito está fresca en mi mente, por lo que suele ser fácil de ver. El flujo de trabajo es regular, por lo que estamos practicando en él, y estamos incentivados a automatizarlo tanto como sea posible.
+
+Al igual que muchos de estos efectos no lineales, la integración puede convertirse fácilmente en una trampa donde la gente aprende la lección equivocada. Una integración difícil puede ser tan traumática que un equipo decide hacer integraciones con menos frecuencia, lo que solo **exacerba el problema en el futuro**.
+
+Lo que está sucediendo aquí es que estamos viendo una **colaboración mucho más estrecha** entre los miembros del equipo. Si dos desarrolladores toman decisiones que entran en conflicto, lo descubrimos cuando integramos. Así, cuanto menos tiempo haya entre integraciones, menos tiempo pasará antes de que detectemos el conflicto, y podremos lidiar con el conflicto antes de que se haga demasiado grande. Con la **integración de alta frecuencia**, nuestro sistema de control de código fuente se convierte en un **canal de comunicación**, uno que puede comunicar cosas que de otra manera no se dirían.
+
+---
+
+### Menos Errores
+
+Los errores (bugs) son esas cosas desagradables que destruyen la confianza y alteran los cronogramas y las reputaciones. Los errores en el software desplegado hacen que los usuarios se enojen con nosotros. Los errores que aparecen durante el desarrollo regular se interponen en nuestro camino, dificultando que el resto del software funcione correctamente.
+
+La Integración Continua no elimina los errores, pero sí los hace **drásticamente más fáciles de encontrar y eliminar**. Esto se debe menos a la integración de alta frecuencia y más a la **introducción esencial del código auto-verificable**. La Integración Continua no funciona sin código auto-verificable porque, sin pruebas decentes, no podemos mantener una línea principal saludable. La Integración Continua, por lo tanto, establece un **régimen regular de pruebas**. Si las pruebas son inadecuadas, el equipo lo notará rápidamente y podrá tomar medidas correctivas. Si aparece un error debido a un conflicto semántico, es fácil de detectar porque solo hay una pequeña cantidad de código que integrar. Las integraciones frecuentes también funcionan bien con la **depuración diferencial ("Diff Debugging")**, por lo que incluso un error detectado semanas después puede reducirse a un pequeño cambio.
+
+Los errores también son **acumulativos**. Cuantos más errores tenemos, más difícil es eliminar cada uno. Esto se debe en parte a que se producen **interacciones de errores**, donde los fallos se muestran como resultado de múltiples defectos, lo que dificulta la búsqueda de cada defecto. También es psicológico: la gente tiene menos energía para encontrar y eliminar errores cuando hay muchos. Por lo tanto, el código auto-verificable reforzado por la Integración Continua tiene otro **efecto exponencial en la reducción de los problemas causados por defectos**.
+
+Esto se topa con otro fenómeno que a mucha gente le resulta contraintuitivo. Al ver con qué frecuencia introducir un cambio significa introducir errores, la gente concluye que para tener un software de alta fiabilidad necesitan ralentizar la tasa de lanzamiento. Esto fue firmemente contradicho por el **programa de investigación DORA** liderado por Nicole Forsgren. Descubrieron que los equipos de élite desplegaban en producción más rápidamente, con más frecuencia y tenían una incidencia de fallos dramáticamente menor cuando realizaban estos cambios. La investigación también encuentra que los equipos tienen niveles más altos de rendimiento cuando tienen **tres o menos ramas activas** en el repositorio de código de la aplicación, **fusionan ramas a la línea principal al menos una vez al día**, y **no tienen congelaciones de código ni fases de integración**.
+
+---
+
+### Habilita la refactorización para una productividad sostenida
+
+La mayoría de los equipos observan que, con el tiempo, las bases de código se deterioran. Las decisiones iniciales fueron buenas en su momento, pero ya no son óptimas después de seis meses de trabajo. Pero cambiar el código para incorporar lo que el equipo ha aprendido significa introducir **cambios profundos en el código existente**, lo que resulta en fusiones difíciles que consumen tiempo y están llenas de riesgo. Todos recuerdan esa vez que alguien hizo lo que sería un buen cambio para el futuro, pero causó días de esfuerzo rompiendo el trabajo de otras personas. Dada esa experiencia, nadie quiere reelaborar la estructura del código existente, aunque ahora sea incómodo para todos construir sobre él, **ralentizando así la entrega de nuevas características**.
+
+La **refactorización** es una técnica esencial para atenuar e incluso revertir este proceso de deterioro. Un equipo que refactoriza regularmente tiene una técnica disciplinada para mejorar la estructura de una base de código utilizando **pequeñas transformaciones que preservan el comportamiento del código**. Estas características de las transformaciones reducen en gran medida sus posibilidades de introducir errores, y pueden hacerse rápidamente, especialmente cuando se apoyan en una base de código auto-verificable. Aplicando la refactorización en cada oportunidad, un equipo puede mejorar la estructura de una base de código existente, haciéndola **más fácil y rápida para añadir nuevas funcionalidades**.
+
+Pero esta historia feliz puede ser torpedeada por los **problemas de integración**. Una sesión de refactorización de dos semanas puede mejorar mucho el código, pero resultar en fusiones largas porque todos los demás han estado trabajando las últimas dos semanas con la estructura antigua. Esto eleva los costos de la refactorización a niveles prohibitivos. La **integración frecuente** resuelve este dilema al asegurar que tanto quienes realizan la refactorización como todos los demás sincronicen regularmente su trabajo. Cuando se utiliza la Integración Continua, si alguien realiza cambios intrusivos en una biblioteca central que estoy utilizando, solo tengo que ajustar unas pocas horas de programación a estos cambios. Si hacen algo que choca con la dirección de mis cambios, lo sé de inmediato, así que tengo la oportunidad de hablar con ellos para que podamos encontrar un mejor camino a seguir.
+
+Hasta ahora en este artículo he planteado varias nociones contraintuitivas sobre los méritos de la integración de alta frecuencia: que cuanto más a menudo integramos, menos tiempo dedicamos a integrar, y que la integración frecuente conduce a menos errores. Aquí está quizás la **noción contraintuitiva más importante en el desarrollo de software**: que los equipos que dedican mucho esfuerzo a mantener su base de código saludable entregan características más rápido y más barato. El tiempo invertido en escribir pruebas y refactorizar ofrece retornos impresionantes en la velocidad de entrega, y la Integración Continua es una parte fundamental para que eso funcione en un entorno de equipo.
+
+---
+
+## El lanzamiento a producción es una decisión de negocio
+
+Imaginemos que estamos demostrando una nueva característica a un interesado, y ella reacciona diciendo: "esto es realmente genial y tendría un gran impacto comercial. ¿Cuánto tiempo falta para que podamos ponerlo en vivo?". Si esa característica se muestra en una rama no integrada, la respuesta puede ser semanas o meses, especialmente si hay poca automatización en el camino a producción. La Integración Continua nos permite mantener una **Línea Principal Lista para el Lanzamiento ("Release-Ready Mainline")**, lo que significa que la decisión de lanzar la última versión del producto a producción es **puramente una decisión de negocio**. Si los interesados quieren que lo último esté en vivo, es cuestión de minutos ejecutar un pipeline automatizado para que así sea. Esto permite a los clientes del software un mayor control sobre cuándo se lanzan las características y los anima a colaborar más estrechamente con el equipo de desarrollo.
+
+La Integración Continua y una Línea Principal Lista para el Lanzamiento eliminan una de las mayores barreras para el despliegue frecuente. El despliegue frecuente es valioso porque permite a nuestros usuarios obtener nuevas características más rápidamente, dar retroalimentación más rápida sobre esas características y, en general, **volverse más colaborativos** en el ciclo de desarrollo. Esto ayuda a **derribar las barreras entre los clientes y el desarrollo**, barreras que, en mi opinión, son las mayores barreras para el éxito del desarrollo de software.
+
+---
+
+## Cuándo NO debemos usar la Integración Continua
+
+Todos esos beneficios suenan bastante atractivos. Pero las personas tan experimentadas (o cínicas) como yo siempre desconfían de una simple lista de beneficios. Pocas cosas vienen sin un costo, y las decisiones sobre arquitectura y procesos suelen ser una cuestión de compensaciones.
+
+Pero confieso que la Integración Continua es uno de esos casos raros en los que hay **pocas desventajas para un equipo comprometido y hábil** que la utilice. El costo impuesto por la integración esporádica es tan grande que casi cualquier equipo puede beneficiarse aumentando su frecuencia de integración. Hay un límite hasta donde los beneficios se acumulan, pero ese límite se sitúa en horas en lugar de días, que es exactamente el territorio de la Integración Continua. La interacción entre el **código auto-verificable, la Integración Continua y la Refactorización** es particularmente fuerte. Hemos estado utilizando este enfoque durante dos décadas en Thoughtworks, y nuestra única pregunta es cómo hacerlo de manera más efectiva; el enfoque central está probado.
+
+Pero eso no significa que la Integración Continua sea para todos. Podrás notar que dije que "hay pocas desventajas para un **equipo comprometido y hábil** que la utilice". Esos dos adjetivos indican los contextos en los que la Integración Continua no es una buena opción.
+
+Por "comprometido", me refiero a un equipo que está trabajando **a tiempo completo en un producto**. Un buen contraejemplo de esto es un proyecto clásico de código abierto, donde hay uno o dos mantenedores y muchos colaboradores. En tal situación, incluso los mantenedores solo dedican unas pocas horas a la semana al proyecto, no conocen muy bien a los colaboradores y no tienen una buena visibilidad de cuándo contribuyen los colaboradores o los estándares que deben seguir al hacerlo. Este es el entorno que llevó a un flujo de trabajo de ramas de características y solicitudes de extracción. En un contexto así, la Integración Continua no es plausible, aunque los esfuerzos para aumentar la frecuencia de integración aún pueden ser valiosos.
+
+La Integración Continua es más adecuada para equipos que trabajan **a tiempo completo en un producto**, como suele ser el caso del software comercial. Pero hay un gran punto intermedio entre el código abierto clásico y el modelo de tiempo completo. Necesitamos usar nuestro juicio sobre qué política de integración utilizar que se ajuste al compromiso del equipo.
+
+El segundo adjetivo se refiere a la **habilidad del equipo para seguir las prácticas necesarias**. Si un equipo intenta la Integración Continua sin una suite de pruebas sólida, se encontrará con todo tipo de problemas porque no tiene un mecanismo para eliminar los errores. Si no automatizan, la integración llevará demasiado tiempo, interfiriendo con el flujo de desarrollo. Si la gente no es disciplinada para asegurar que sus envíos a la línea principal se hagan con construcciones en verde, entonces la línea principal terminará rota todo el tiempo, interponiéndose en el trabajo de todos.
+
+Cualquiera que esté considerando introducir la Integración Continua debe tener en cuenta estas habilidades. Instituir la Integración Continua sin **código auto-verificable** no funcionará, y también dará una impresión inexacta de lo que es la Integración Continua cuando se hace bien.
+
+Dicho esto, no creo que las exigencias de habilidad sean particularmente difíciles. No necesitamos desarrolladores "estrellas" para que este proceso funcione en un equipo. (De hecho, los desarrolladores "estrellas" suelen ser una barrera, ya que las personas que se consideran así generalmente no son muy disciplinadas). Las habilidades para estas prácticas técnicas no son tan difíciles de aprender, generalmente el problema es encontrar un buen maestro y formar los hábitos que cristalizan la disciplina. Una vez que el equipo le coge el tranquillo al flujo, generalmente se siente cómodo, suave y rápido.
+
+---
+
+## Introduciendo la Integración Continua
+
+Una de las cosas difíciles de describir cómo introducir una práctica como la Integración Continua es que el camino **depende mucho de dónde se empieza**. Al escribir esto, no sé qué tipo de código estás trabajando, qué habilidades y hábitos posee tu equipo, y mucho menos el contexto organizacional más amplio. Todo lo que alguien como yo puede hacer es señalar algunas **señales comunes**, con la esperanza de que te ayuden a encontrar tu propio camino.
+
+Al introducir cualquier nueva práctica, es importante tener claro **por qué lo estamos haciendo**. Mi lista de beneficios anterior incluye las razones más comunes, pero diferentes contextos conducen a un nivel diferente de importancia para ellos. Algunos beneficios son más difíciles de apreciar que otros. Reducir el desperdicio en la integración aborda un problema frustrante y puede percibirse fácilmente a medida que avanzamos. Habilitar la refactorización para reducir la "mugre" en un sistema y mejorar la productividad general es más difícil de ver. Lleva tiempo antes de que veamos un efecto, y es difícil comparar con el contrafactual. Sin embargo, este es probablemente el beneficio más valioso de la Integración Continua.
+
+La lista de prácticas anteriores indica las **habilidades que un equipo necesita aprender** para que la Integración Continua funcione. Algunas de ellas pueden aportar valor incluso antes de acercarse a la alta frecuencia de integración. El código auto-verificable añade estabilidad a un sistema incluso con "commits" poco frecuentes.
+
+Un objetivo puede ser **duplicar la frecuencia de integración**. Si las ramas de características suelen durar diez días, averigüa cómo reducirlas a cinco. Esto puede implicar una mejor automatización de la construcción y las pruebas, y un pensamiento creativo sobre cómo una tarea grande puede dividirse en tareas más pequeñas e integradas de forma independiente. Si utilizamos revisiones previas a la integración, podríamos incluir pasos explícitos en esas revisiones para verificar la cobertura de las pruebas y fomentar "commits" más pequeños.
+
+Si estás iniciando un **nuevo proyecto**, podemos comenzar con la Integración Continua desde el principio. Debemos estar atentos a los **tiempos de construcción** y tomar medidas tan pronto como comencemos a ir más lento de la regla de los diez minutos. Actuando rápidamente haremos las reestructuraciones necesarias antes de que la base de código sea tan grande que se convierta en un gran problema.
+
+Por encima de todo, debemos **obtener ayuda**. Debemos encontrar a alguien que haya hecho Integración Continua antes para que nos ayude. Como cualquier técnica nueva, es difícil introducirla cuando no sabemos cómo será el resultado final. Puede costar dinero obtener este apoyo, pero de lo contrario pagaremos en tiempo y productividad perdidos. (Descargo de responsabilidad / Anuncio: sí, en Thoughtworks ofrecemos consultoría en esta área. Después de todo, hemos cometido la mayoría de los errores que se pueden cometer).
 
 ---
