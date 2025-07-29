@@ -11,6 +11,7 @@ title: You're up and running!
 [Docker]({{ site.baseurl  }}/docker/)  
 [Docker-exercise]( {{ site.baseurl  }} /docker-exercise/)  
 [Integración continua]( {{ site.baseurl  }}/continuos-integration/)  
+[Revisión de Código]( {{ site.baseurl  }}/code-review/)  
 [Sobre el curso]({{ site.baseurl }}/about/)  
 
 ---
