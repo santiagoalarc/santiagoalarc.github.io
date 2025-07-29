@@ -327,3 +327,5 @@ Si estás iniciando un **nuevo proyecto**, podemos comenzar con la Integración 
 Por encima de todo, debemos **obtener ayuda**. Debemos encontrar a alguien que haya hecho Integración Continua antes para que nos ayude. Como cualquier técnica nueva, es difícil introducirla cuando no sabemos cómo será el resultado final. Puede costar dinero obtener este apoyo, pero de lo contrario pagaremos en tiempo y productividad perdidos. (Descargo de responsabilidad / Anuncio: sí, en Thoughtworks ofrecemos consultoría en esta área. Después de todo, hemos cometido la mayoría de los errores que se pueden cometer).
 
 ---
+
+[Conceptos de CI/CD](https://www.jetbrains.com/es-es/teamcity/ci-cd-guide/concepts).

@@ -900,5 +900,29 @@ public class Exercise11 {
 - [ ] a b c
 - [ ] Error de compilación
 
+## A41. ¿Cuál será el resultado de compilar y ejecutar el programa?
+~~~~~~~~
+    int x;
+    for (int x = 0; x <2; x++){
+        System.out.print(x);
+    }
+~~~~~~~~
+{: .language-ruby}
+
+- [ ] 012
+- [x] Error de compilación
+- [ ] 0
+- [ ] Se lanza una excepción en tiempo de ejecución
+- [ ] 01
+
+## A42. Which of these is synchronized? 
+
+- [ ] TreeMap
+- [ ] HashMap
+- [x] Hastable
+- [ ] All
+- [ ] None
+
+
 
 
