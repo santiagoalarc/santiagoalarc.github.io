@@ -53,7 +53,6 @@ Si bien un programa simple puede necesitar solo una o dos líneas de archivo de 
 Dependiendo de lo que necesitemos, podemos necesitar que se construyan diferentes tipos de cosas. Podemos construir un sistema **con o sin código de prueba**, o con diferentes conjuntos de pruebas. Algunos componentes se pueden construir de forma independiente. Un script de construcción debería permitirnos construir **objetivos alternativos** para diferentes casos.
 
 ---
-¿Hay algo más en el artículo que te gustaría traducir o discutir?
 
 ### Hacer que la Construcción sea Auto-Verificable
 Tradicionalmente, una construcción significaba compilar, enlazar y todo lo demás necesario para que un programa se ejecutara. Un programa puede ejecutarse, pero eso no significa que haga lo correcto. Los lenguajes modernos de tipado estático pueden detectar muchos errores, pero muchos más se escapan de esa red. Esto es un problema crítico si queremos integrar con la frecuencia que exige la Integración Continua. Si los errores llegan al producto, nos enfrentamos a la abrumadora tarea de corregirlos en una base de código que cambia rápidamente. La prueba manual es demasiado lenta para hacer frente a la frecuencia de los cambios.
@@ -96,6 +95,10 @@ Los "commits" frecuentes animan a los desarrolladores a dividir su trabajo en pe
 Si todos los miembros del equipo integran al menos diariamente, esto debería significar que la línea principal se mantiene en un estado saludable. Sin embargo, en la práctica, las cosas aún pueden salir mal. Esto puede deberse a fallos en la disciplina, a no actualizar y construir antes de un envío, o a diferencias en el entorno entre los espacios de trabajo de los desarrolladores.
 
 Por lo tanto, necesitamos asegurar que cada "commit" sea verificado en un entorno de referencia. La forma habitual de hacer esto es con un Servicio de Integración Continua (Servicio de CI) que monitorea la línea principal. (Ejemplos de Servicios de CI son herramientas como Jenkins, GitHub Actions, Circle CI, etc.). Cada vez que la línea principal recibe un "commit", el servicio de CI extrae el encabezado de la línea principal a un entorno de integración y realiza una construcción completa. Solo una vez que esta construcción de integración esté en verde, el desarrollador puede considerar que la integración está completa. Al asegurar que tenemos una construcción con cada envío, si obtenemos una falla, sabemos que el error se encuentra en ese último envío, lo que reduce el lugar donde tenemos que buscar para corregirlo.
+
+
+| Jenkins | GitHub Actions | CircleCI | Azure DevOps |
+| :------ | :------------- | :------- | :----------- |
 
 Quiero recalcar aquí que, cuando usamos un Servicio de CI, solo lo usamos en la línea principal, que es la rama principal en la instancia de referencia del sistema de control de versiones. Es común usar un servicio de CI para monitorear y construir desde múltiples ramas, pero el objetivo de la integración es que todos los "commits" coexistan en una sola rama. Si bien puede ser útil usar un servicio de CI para hacer una construcción automatizada para diferentes ramas, eso no es lo mismo que la Integración Continua, y los equipos que usan Integración Continua solo necesitarán que el servicio de CI monitoree una única rama del producto.
 
@@ -204,7 +207,7 @@ Hasta ahora, he descrito una forma de abordar la integración, pero si no es uni
 
 El más antiguo es el que vi en ese almacén en los años 80: la **Integración Pre-Lanzamiento**. Esta ve la integración como una fase de un proyecto de software, una noción que es una parte natural de un **Proceso en Cascada ("Waterfall Process")**. En un proyecto así, el trabajo se divide en unidades, que pueden ser realizadas por individuos o pequeños equipos. Cada unidad es una parte del software, con una interacción mínima con otras unidades. Estas unidades se construyen y prueban por sí mismas (el uso original del término "prueba unitaria"). Luego, una vez que las unidades están listas, las integramos en el producto final. Esta integración ocurre una vez, y es seguida por pruebas de integración y luego un lanzamiento. Así, si pensamos en el trabajo, vemos dos fases: una donde todos trabajan en paralelo en características, seguida de un único flujo de esfuerzo en la integración.
 
-![Trabajo en funcionalidades](/images/work-on-features.png "Trabajo en funcionalidades")
+![Trabajo en funcionalidades](/images/work-on-feature.png "Trabajo en funcionalidades")
 
 La frecuencia de integración en este estilo está ligada a la **frecuencia de lanzamiento**, generalmente versiones principales del software, usualmente medidas en meses o años. Estos equipos usarán un proceso diferente para las correcciones de errores urgentes, de modo que puedan lanzarse por separado al cronograma de integración regular.
 
@@ -226,9 +229,6 @@ De ello se deduce que la mayoría de los equipos pueden ver una mejora útil en 
 
 ---
 
-Aquí tienes la traducción al español del texto, manteniendo el contexto de la Integración Continua:
-
----
 
 ### Reducción del riesgo de retrasos en la entrega
 
