@@ -12,6 +12,7 @@ title: You're up and running!
 [Docker-exercise]( {{ site.baseurl  }} /docker-exercise/)  
 [Integración continua]( {{ site.baseurl  }}/continuos-integration/)  
 [Revisión de Código]( {{ site.baseurl  }}/code-review/)  
+[Fudnamentos Java]( {{ site.baseurl  }}/java-knowledge/)  
 [Sobre el curso]({{ site.baseurl }}/about/)  
 
 ---
