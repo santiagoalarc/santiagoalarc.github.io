@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Ejercicios de programaciój
+title: Ejercicios de programación
 permalink: /programming-exercises/
 ---
 
@@ -73,6 +73,7 @@ class Main{
 }
 ~~~~~~~~
 {: .language-ruby}
+
 - [ ] Cambie RuntimeExpetion en la línea 1 a java.io.IOException.
 - [ ] Agregue throws IOException al método principal así como al constructor de clase Class1.
 - [ ] Agregue throws IOException al constructor de clase Class1.
@@ -80,8 +81,8 @@ class Main{
 - [ ] Agregue throws IOException al constructor de clase Class1 y cambie catch (RuntimeException e) por catch (Exception e) en el método principal (main method).
 
 ## 4. ¿Cuál sería el resultado?
-~~~~~~
 
+~~~~~~~~
         Stream<String> stringStream = Stream.of("x1", "y2", "z3", "x1");
 
         var result = stringStream.collect(
@@ -89,7 +90,7 @@ class Main{
                         Collectors.joining(":")));
 
         System.out.println(result);
-    
+
 ~~~~~~~~
 {: .language-ruby}
 
@@ -129,7 +130,8 @@ class Y{
 }
 ~~~~~~~~
 {: .language-ruby}
-- [ ] 4, 190.0
+
+- [x] 4, 190.0
 - [ ] Se lanza una excepción en tiempo de ejecución.
 - [ ] 17, 0.0
 - [ ] 4, 0.0
@@ -187,8 +189,6 @@ public class StaticQuest12{
 - [ ] La compilación falla en la línea 2
 
 
-
-
 ## 8. ¿Qué código leerá correctamente una linea de un archivo?
 ~~~
 	BufferedReader br = new BufferedReader(new FileReader("data\\file.txt"));
@@ -218,7 +218,7 @@ public class StaticQuest12{
 ~~~
 
 ## 9. ¿Cuál sería el resultado?
-~~~~~~
+~~~~~~~~
 
         Stream<String> stringStream = Stream.of("nuevo4", "cinco", "tres", "solo");
 
@@ -226,18 +226,17 @@ public class StaticQuest12{
                 .filter(s -> s <= 5)
                 .collect(Collectors.toSet());
         System.out.println(result);
-    }
+    
 ~~~~~~~~
 {: .language-ruby}
 - [ ] Se lanza una excepción en tiempo de ejecución.
 - [x] [5, 4]
 - [ ] Fallo de compilación
-- [ ] [4, 5]
+- [x] [4, 5]
 - [ ] [5, 4, 4]
 
 ## 10. Dado el siguiente código para las clases CustomExeption y Custom, ¿Cúal es el resultado?
-~~~~~~
-
+~~~~~~~~
 class Custom{
     public static void main(String[] args) {
         try{

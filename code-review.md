@@ -4,6 +4,8 @@ title: Revisión de código
 permalink: /code-review/
 ---
 
+[Code Review By Google](https://google.github.io/eng-practices/review/reviewer)
+
 # CODE REVIEW
 
 Dentro de la revisón de código, cuando se ba a hacer un comentario se puede utilizar el prefijo **"NIT:"** para indicar que la observación o sugerencia es sobre un detalle meno, no crítico o de estilo, que no afecta la funcionalidad princila del código.
