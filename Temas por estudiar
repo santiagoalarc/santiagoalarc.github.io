@@ -1,0 +1,75 @@
+Buenas practicas
+Integración Continua (CI): Frecuencia de integración, detección temprana de errores, feedback rápido, herramientas CI.
+https://martinfowler.com/articles/continuousIntegration.html, https://www.atlassian.com/continuous-delivery/continuous-integration
+
+Buenas practicas
+Pruebas Unitarias: Aislamiento de dependencias (mocks, stubs, fakes), principios FIRST (Fast, Independent, Repeatable, Self-validating, Timely), TDD.
+
+https://martinfowler.com/bliki/UnitTest.html, https://testing.googleblog.com/2012/04/the-firts-principles-of-unit-testing.html
+
+Buenas practicas
+Revisiones de Código: Transferencia de conocimiento, mantenibilidad, legibilidad, propiedad colectiva, feedback constructivo.
+https://www.atlassian.com/agile/software-development/code-reviews, https://google.github.io/eng-practices/review/reviewer/
+
+Conocimientos en BD SQL y NoSQL
+Bases de Datos NoSQL: Tipos (documentos, clave-valor, grafos, columnas), ejemplos correctos (Cassandra, Redis, Neo4j), ventajas y desventajas.
+https://www.mongodb.com/nosql-explained, https://redis.io/topics/introduction, https://neo4j.com/developer/graph-database/
+
+Conocimientos en BD SQL y NoSQL
+Bases de Datos SQL: Elección según caso de uso, modelo CAP.
+https://www.postgresql.org/docs/current/tutorial-intro.html, https://docs.mongodb.com/manual/faq/fundamentals/#what-is-the-cap-theorem, https://www.ibm.com/cloud/blog/sql-vs-nosql
+Conocimientos en BD SQL y NoSQL
+Seguridad en Bases de Datos: Roles y privilegios mínimos (GRANT/REVOKE), auditoría de accesos, cifrado de datos (en reposo y tránsito), hashing de contraseñas, gestión de claves.
+https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html, https://www.postgresql.org/docs/current/runtime-config-logging.html
+
+Inteligencia Artificial
+Agentes de Inteligencia Artificial: Percepción (sensores), procesamiento de información, toma de decisiones, actuación (efectores), adaptación (aprendizaje y razonamiento).
+https://plato.stanford.edu/entries/reasoning-agents/, https://www.ibm.com/cloud/learn/what-is-an-ai-agent
+
+Inteligencia Artificial
+IA Generativa: Modelos de difusión, LLM, generación de texto, imágenes, audio, video.
+https://cloud.google.com/learn/what-is-generative-ai, https://openai.com/blog/chatgpt-plus
+Inteligencia Artificial
+Inteligencia Artificial: Simulación de procesos de inteligencia humana, razonamiento, aprendizaje, actuación autónoma.
+https://www.ibm.com/cloud/learn/what-is-artificial-intelligence, https://www.deepmind.com/learn/what-is-ai
+Inteligencia Artificial
+Prompt Engineering: Diseño, estructura y optimización de instrucciones para modelos de lenguaje, alineación con necesidades de negocio, interacciones efectivas y coherentes.
+https://platform.openai.com/docs/guides/prompt-engineering, https://developers.google.com/machine-learning/gan/prompting-guide
+Inteligencia Artificial
+Redes Neuronales Profundas: Estructura (capas de nodos interconectados), extracción de características y patrones complejos, aplicaciones (visión computacional, PNL, reconocimiento de voz).
+https://www.ibm.com/cloud/learn/deep-learning, https://developers.google.com/machine-learning/glossary/all-terms#deep_neural_network
+Java & Spring Boot
+APIs REST en Spring Boot: @RequestParam, @PathVariable, @RequestBody, validación de datos (@Valid), manejo de errores (@ControllerAdvice, @ExceptionHandler).
+https://docs.spring.io/spring-framework/reference/web/webmvc/mvc.html, https://www.baeldung.com/spring-rest-api-error-handling
+Java & Spring Boot
+Anotaciones en Spring: Anotaciones como metadatos, creación de anotaciones personalizadas, AOP.
+https://docs.spring.io/spring-framework/reference/core/beans/classpath-scanning.html, https://www.baeldung.com/spring-custom-annotation
+Java & Spring Boot
+Configuración de Aplicaciones Spring Boot: Perfiles de configuración (profiles), @Bean para beans manuales, integración de base de datos en application.properties/yml.
+https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config, https://www.baeldung.com/spring-profiles
+Java & Spring Boot
+Dependencias en Spring Boot: Inyección de dependencias (DI) en Spring, @Autowired, @Component, constructor injection, dependencias circulares.
+https://docs.spring.io/spring-framework/reference/core/beans/dependencies/dependency-injection.html, https://www.baeldung.com/spring-dependency-injection
+Java & Spring Boot
+Java: JVM, portabilidad (Write Once, Run Anywhere), garbage collector, tipado estático, concurrencia.
+https://docs.oracle.com/en/java/javase/index.html, https://www.baeldung.com/java-jvm-memory-model
+Java & Spring Boot
+Optimización de Rendimiento en Spring Boot: Actuator, optimización de consultas SQL, perfiles, connection pools (HikariCP), monitoreo avanzado (Micrometer, Prometheus, JProfiler).
+https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html, https://www.baeldung.com/spring-boot-performance-tuning
+Java & Spring Boot
+Spring Data JPA: @Entity, JpaRepository (operaciones CRUD), consultas personalizadas, relaciones entre entidades (@OneToMany, @ManyToOne).
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/, https://www.baeldung.com/spring-data-jpa-tutorial
+Seguridad
+Cross-Site Scripting (XSS): Definición de XSS (inyección de scripts maliciosos), mitigación (escapar caracteres, CSP, HttpOnly cookies, textContent), no confundir con cifrado.
+https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html, https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting
+Seguridad
+Inyección SQL: Prevención (consultas preparadas/parametrizadas, validación/escapado de entradas, ORM, restricción de permisos, WAF, stored procedures).
+https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html, https://developer.mozilla.org/en-US/docs/Glossary/SQL_injection
+Seguridad
+Objetivo de la Seguridad de la Información: Modelo CIA (Confidencialidad, Integridad, Disponibilidad), protección de datos (almacenamiento, uso, transmisión), controles técnicos y administrativos.
+https://www.iso.org/isoiec-27001-information-security.html, https://www.nist.gov/cybersecurity/framework
+Seguridad
+OWASP Top 10: Lista de riesgos de seguridad web comunes, no una tecnología, ejemplos de vulnerabilidades (inyección SQL, XSS, autenticación), uso como guía y estándar.
+https://owasp.org/www-project-top-ten/
+
+

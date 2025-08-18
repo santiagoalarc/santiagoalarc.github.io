@@ -304,6 +304,9 @@ EXPOSE 3000
 ~~~~~~~~
 {: .language-ruby}
 
+### LABEL
+* Puede ir en cualquier nivel de de la imagen pero suele ir al principio, sirve para solo dar metadata a la imagen
+
 ### CMD y/o ENTRYPOINT
 * Propósito: Define el comando predeterminado o el punto de entrada ejecutable cuando se inicia el contenedor.
 * Frecuencia de cambio: Generalmente se define una vez.

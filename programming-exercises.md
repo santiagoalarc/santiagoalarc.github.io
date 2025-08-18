@@ -261,7 +261,7 @@ class Custom{
 - [ ] CR
 - [ ] Una compilación fallida ocurrirá en la línea 1
 
-## 11. ¿Cuál será la salida del programa cuando compule y corra?
+## 11. ¿Cuál será la salida del programa cuando compile y corra?
 ~~~~~~~~
 public class C21 {
     public static void main(String[] args) {
@@ -288,7 +288,7 @@ public class C21 {
 - [ ] [2017, 2018, 2019][2017, 2018, 2019]
 - [x] [2017, 2018, 2019][2018, 2019, 2020]
 
-## 12. Que 3 declaraciones de parámetros pueden der intesertadas en la línea 1 
+## 12. Que 3 declaraciones de parámetros pueden ser intesertadas en la línea 1 
 (como un tipo de paramtro) asique el programa compile sin warnings?
 ~~~~~~~~
 interface Print{}
