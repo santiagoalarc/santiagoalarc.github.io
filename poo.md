@@ -112,6 +112,131 @@ public class DemoMain {
 
 El modificador final se utiliza para definir una implementación final de clases y métodos, así como la invariabilidad de variables y campos.
 
+La palabra clave final es un modificador sin acceso que se aplica a clases, métodos y variables, lo que los hace inmutables (imposibles de heredar o anular). Se puede usar en diversos contextos.
+
+* Variable de referencia: A una variable de referencia declarada como final no se le puede asignar otro objeto. Sin embargo, los datos dentro del objeto sí se pueden modificar.
+
+* Clase: Una clase declarada con final no puede tener sucesores.
+
+* Método: Un método declarado con final no se puede anular; es decir, su cuerpo no se puede modificar en el sucesor.
+
+* Campo de instancia: Un campo de instancia declarado como final solo se inicializa una vez: al declararlo, en el constructor o en el bloque inicializador.
+
+* Variable local: Una variable local o un parámetro de método declarado con final no se puede modificar.
+
+* Campo de clase: Para los campos de clase, el modificador final se suele usar con el modificador static para hacerlos constantes.
+
+## Herencia
+
+### Herencia en cadena
+
+#### Regla 1
+Al crear un objeto de subclase, los constructores de todas las superclases en su cadena de herencia se invocan en el orden de su herencia, de superclase a subclase. Esto significa que la cadena de herencia se sigue desde la superclase superior. Luego, los constructores se ejecutan uno a uno, siguiendo la jerarquía de arriba a abajo.
+
+En este ejemplo, solo se declaran los constructores predeterminados en las clases Cat y BritishCat. El constructor de la clase BritishCat no invoca explícitamente al de la clase Cat. Como puede ver, se ejecuta el constructor de la clase Cat.
+
+~~~~~~~~
+public class Cat {
+    Cat() {
+        System.out.println("Cat constructor");
+    }
+}
+public class BritishCat extends Cat {
+    BritishCat() {
+        System.out.println("British constructor");
+    }
+}
+public class Main {
+    public static void main(String[] arg) {
+        BritishCat myCat = new BritishCat();
+        //Cat constructor
+        //British constructor
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+
+#### Regla 2
+Una invocación explícita (super) a un constructor de superclase debe ser el primer operador en el cuerpo del constructor de la subclase.
+
+En este ejemplo, los constructores de las clases Cat y BritishCat solo se declaran con parámetros. El constructor de la clase BritishCat invoca explícitamente al constructor de la clase Cat como su primera acción.
+
+~~~~~~~~
+public class Cat {
+    Cat(String name) {
+        System.out.println("Cat constructor – name " + name);
+    }
+}
+public class BritishCat extends Cat {
+    BritishCat(String name) {
+        super(name);
+        System.out.println("British constructor");
+    }
+}
+public class Main {
+    public static void main(String[] arg) {
+        BritishCat myCat = new BritishCat("Mulberry");
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+
+#### Regla 3
+Si un constructor de subclase no invoca explícitamente a ninguno de los constructores de la superclase, se debe invocar automáticamente el constructor predeterminado de la superclase.
+
+En este ejemplo, se declaran dos constructores en la clase Cat: uno predeterminado y otro con parámetros. La clase BritishCat solo tiene un constructor con parámetros. El constructor de la clase BritishCat no llama explícitamente a ninguno de los constructores de la clase Cat. Como puede ver, se ejecutará el constructor predeterminado de la clase Cat.
+
+~~~~~~~~
+public class Cat {
+    Cat() {
+        System.out.println("Cat default constructor");
+    }
+    Cat(String name) {
+        System.out.println("Cat constructor " + name);
+    }
+}
+public class BritishCat extends Cat {
+    BritishCat(String name) {
+        System.out.println("British constructor");
+    }
+}
+public class Main {
+    public static void main(String[] arg) {
+        BritishCat myCat = new BritishCat("Mulberry");
+        //Cat default constructor
+        //British constructor
+    }
+}
+~~~~~~~~
+{: .language-ruby}
+
+#### Regla 4
+Si una superclase no tiene un constructor predeterminado y el constructor de la subclase no invoca explícitamente a otro constructor de superclase, el compilador de Java generará un error.
+
+En este ejemplo, solo se declaran constructores con parámetros en las clases Cat y BritishCat. El constructor de la clase BritishCat no invoca explícitamente al de la clase Cat. Esto significa que el constructor predeterminado de la clase Cat debería invocarse automáticamente. El compilador revisa la cadena de constructores y no encuentra un constructor predeterminado en la clase Cat; por lo tanto, genera un error.
+
+Pase el cursor sobre el icono de información para ver una explicación del código.
+
+~~~~~~~~
+public class Cat {
+    Cat(String name) {
+        System.out.println("Cat constructor " + name);
+    }
+}
+public class BritishCat extends Cat {
+    BritishCat(String name) { //Compilation error
+        System.out.println("British constructor");
+    }
+}
+public class Main {
+    public static void main(String[] arg) {
+        BritishCat myCat = new BritishCat("Mulberry");
+    }
+}
+~~~~~~~~
+{: .language-ruby}
 
 ## Abstracción 
 
