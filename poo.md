@@ -54,10 +54,10 @@ Para acceder a campos y métodos estáticos, basta con especificar antes de ello
 
 La definición de un método de clase como estático depende de los datos que utiliza:
 
-Todos los datos necesarios se pasan explícitamente (en parámetros).
-Solo se utilizan campos estáticos.
+* Todos los datos necesarios se pasan explícitamente (en parámetros).
+* Solo se utilizan campos estáticos.
 
-Ejemplo: La clase CustomMath no tiene campos de instancia. Los métodos reciben datos a través de sus parámetros; es decir, las instancias de clase no tienen estado. Por ello, los métodos deben declararse como estáticos.
+*Ejemplo*: La clase CustomMath no tiene campos de instancia. Los métodos reciben datos a través de sus parámetros; es decir, las instancias de clase no tienen estado. Por ello, los métodos deben declararse como estáticos.
 
 ~~~~~~~~
 public class CustomMath {
@@ -72,6 +72,41 @@ public class CustomMath {
 ~~~~~~~~
 {: .language-ruby}
 
+Limitaciones de los métodos estáticos:
+
+* Los métodos estáticos solo pueden invocar directamente métodos estáticos.
+* Los métodos estáticos solo pueden acceder directamente a campos estáticos o a sus propios parámetros.
+* No se puede acceder a los métodos estáticos mediante las referencias `this` y `super`.
+* Los métodos estáticos pueden sobrecargarse con métodos no estáticos y viceversa.
+
+#### Static fields 
+
+Campos de clase estáticos:
+
+* Se crean al acceder a la clase por primera vez.
+* Son comunes a todos los objetos de la clase.
+* Existen independientemente de las instancias de la clase.
+* Se puede acceder a ellos antes de crear una instancia de la clase.
+
+*Ejemplo*: Definamos la clase DemoStatic, que contiene solo elementos estáticos. El método main() de la clase DemoMain muestra la interacción con los campos y métodos de la clase DemoStatic sin crear una instancia, ya que no es necesario.
+
+~~~~~~~~
+public class DemoStatic {
+    public static int x;
+    public static int y;
+    public static int lengthVector() {
+        return (int)Math.sqrt(x*x + y*y);
+    }
+}
+public class DemoMain {
+    public static void main(String[] args) {
+        DemoStatic.x = 3;
+        DemoStatic.y = 4;
+        System.out.println("length = " + DemoStatic.lengthVector());
+    }
+}
+~~~~~~~~
+{: .language-ruby}
 
 ## El modificador final
 
