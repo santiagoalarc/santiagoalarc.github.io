@@ -56,17 +56,18 @@ La definición de un método de clase como estático depende de los datos que ut
 
 Todos los datos necesarios se pasan explícitamente (en parámetros).
 Solo se utilizan campos estáticos.
+
 Ejemplo: La clase CustomMath no tiene campos de instancia. Los métodos reciben datos a través de sus parámetros; es decir, las instancias de clase no tienen estado. Por ello, los métodos deben declararse como estáticos.
 
 ~~~~~~~~
 public class CustomMath {
-public static int percent;
-public static int add(int x, int y) {
-return x + y + percent;
-}
-public static int multiply(int x, int y) {
-return x * y;
-}
+    public static int percent;
+    public static int add(int x, int y) {
+        return x + y + percent;
+    }
+    public static int multiply(int x, int y) {
+        return x * y;
+    }
 }
 ~~~~~~~~
 {: .language-ruby}
